@@ -1,0 +1,246 @@
+(function () {
+    'use strict';
+
+    angular
+        .module('app')
+        .controller('FoodListController', FoodListController);
+
+    FoodListController.$inject = ['$scope', '$rootScope', '$http', '$location'];
+    function FoodListController($scope, $rootScope, $http, $location) {
+        var url = "/app-portal/menu";
+        $http({
+            method: 'GET',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            url: url
+        }).then(function (response) {
+            $scope.food = response.data;
+        }, function (response) {
+        });
+
+        if (localStorage.getItem('orders')) {
+            $scope.orders = JSON.parse(localStorage.getItem('orders'));
+        } else {
+            $scope.orders = [];
+            localStorage.setItem('orders', "");
+        }
+
+        $scope.cartTotal = 0;
+        checkCart();
+
+        $scope.addToCart = function (id) {
+            var selectedItem = findItems($scope.orders, $scope.food, id);
+            if (selectedItem != null) {
+                $scope.orders.push(selectedItem);
+                checkCart();
+                $scope.getTotal();
+                $scope.updateCartStorage();
+            }
+        };
+
+        $scope.updateCartStorage = function () {
+            localStorage.setItem('orders', JSON.stringify($scope.orders));
+        };
+
+        $scope.placeOrder = function () {
+            $http({
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                url: '/app-portal/api/commit',
+                data: {
+                    "commitInstances": [{
+                        "id": "NEW-platformsampleportal$Order",
+                        "food": $scope.orders
+                    }]
+                },
+                params: {"s": localStorage.getItem('session_id')}
+            }).then(function (response) {
+                $scope.orders = [];
+                $scope.updateCartStorage();
+                checkCart();
+                $scope.getTotal();
+                $location.path('/orders');
+            }, function (response) {
+                if (response.status == 401) {
+                    if (localStorage.getItem('username')) {
+                        $rootScope.reauth($scope.placeOrder());
+                    }
+                }
+            });
+        };
+
+        $scope.removeFromCart = function (id) {
+            for (var i = 0; i < $scope.orders.length; ++i) {
+                if ($scope.orders[i].id == id)
+                    $scope.orders.splice(i, 1);
+            }
+            checkCart();
+            $scope.getTotal();
+            $scope.updateCartStorage();
+        };
+
+        $scope.getTotal = function () {
+            $scope.cartTotal = 0;
+            for (var i = 0; i < $scope.orders.length; ++i) {
+                $scope.cartTotal += parseInt($scope.orders[i].price);
+            }
+        };
+
+        function checkCart() {
+            $scope.emptyCart = $scope.orders.length == 0;
+        }
+    }
+
+    angular
+        .module('app')
+        .controller('OrdersController', OrdersController);
+
+    OrdersController.$inject = ['$rootScope', '$scope', '$http', '$location'];
+    function OrdersController($rootScope, $scope, $http, $location) {
+        $scope.totals = [];
+        $scope.getOrders = function () {
+            $http({
+                method: 'GET',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                url: '/app-portal/api/query.json',
+                params: {
+                    "s": localStorage.getItem('session_id'),
+                    "e": "platformsampleportal$Order",
+                    "q": "select u from platformsampleportal$Order u order by u.createTs",
+                    "view": "order-view"
+                }
+            }).then(function (response) {
+                $scope.orders = timeConverter(response.data);
+                $scope.calcTotals();
+            }, function (response) {
+                if (response.status == 401) {
+                    if (localStorage.getItem('username')) {
+                        $rootScope.reauth($scope.getOrders());
+                    }
+                }
+            });
+        };
+        $scope.getOrders();
+
+        $scope.cancelOrder = function (id) {
+            $http({
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                url: '/app-portal/api/commit',
+                data: {
+                    "commitInstances": [{
+                        "id": id,
+                        "status": "40"
+                    }]
+                },
+                params: {
+                    "s": localStorage.getItem('session_id')
+                }
+            }).then(function (response) {
+                for (var i = 0; i < $scope.orders.length; ++i) {
+                    if ($scope.orders[i].id == id) {
+                        $scope.orders[i].status = 40;
+                    }
+                }
+            }, function (response) {
+                if (response.status == 401) {
+                    if (localStorage.getItem('username')) {
+                        $rootScope.reauth($scope.cancelOrder(id));
+                    }
+                }
+            });
+        };
+
+        $scope.calcTotals = function () {
+            for (var i = 0; i < $scope.orders.length; ++i) {
+                var totalItem = 0;
+                for (var j = 0; j < $scope.orders[i].food.length; ++j) {
+                    totalItem = totalItem + parseInt($scope.orders[i].food[j].price);
+                }
+                $scope.totals.push(totalItem);
+            }
+        }
+    }
+
+    angular
+        .module('app')
+        .controller('LoginController', LoginController);
+
+    LoginController.$inject = ['$rootScope', '$scope', '$http', '$location'];
+    function LoginController($rootScope, $scope, $http, $location) {
+        var vm = this;
+        vm.login = login;
+
+        function login() {
+            $http({
+                method: "POST",
+                url: "/app-portal/api/login",
+                data: {
+                    "username": vm.username,
+                    "password": vm.password,
+                    "locale": "en"
+                },
+                contentType: "application/x-www-form-urlencoded"
+            }).then(function (response) {
+                localStorage.setItem('session_id', response.data);
+                localStorage.setItem('username', vm.username);
+                localStorage.setItem('password', vm.password);
+                $location.path('/');
+                $rootScope.checkLogin($rootScope);
+            }, function (response) {
+                if (response.status == 401) {
+                    vm.authFailed = true;
+                }
+            });
+        }
+    }
+
+    angular
+        .module('app')
+        .controller('MenuController', MenuController);
+
+    MenuController.$inject = ['$rootScope', '$scope', '$http', '$location'];
+    function MenuController($rootScope, $scope, $http, $location) {
+        $scope.authAction = function () {
+            if (localStorage.getItem('session_id')) {
+                $scope.logoutAction();
+            } else {
+                $scope.loginAction();
+            }
+        };
+
+        $scope.logoutAction = function () {
+            localStorage.removeItem('session_id');
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+            localStorage.removeItem('orders');
+            $rootScope.checkLogin($rootScope);
+            $location.path('/');
+        };
+
+        $scope.loginAction = function () {
+            $rootScope.checkLogin($rootScope);
+            $location.path('/login');
+        };
+    }
+})();
+
+function timeConverter(items) {
+    var date;
+    for (var i = 0; i < items.length; ++i) {
+        date = new Date(items[i].createTs);
+        items[i].createTs = date.getFullYear() + "." + (date.getMonth()+1) + "." + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+    }
+    return items;
+}
+
+function findItems(currentCart, items, id) {
+    for (var i = 0; i < items.length; ++i) {
+        if (items[i].id == id) {
+            for (var j = 0; j < currentCart.length; ++j) {
+                if (currentCart[j].id == id)
+                    return;
+            }
+            return items[i];
+        }
+    }
+}

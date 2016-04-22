@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="com.company.platformsampleportal.entity.Order"
+          extends="_local"
+          name="order-view">
+        <property name="user">
+            <property name="name"/>
+            <property name="login"/>
+        </property>
+        <property name="food"
+                  view="_local">
+        </property>
+    </view>
+</views>

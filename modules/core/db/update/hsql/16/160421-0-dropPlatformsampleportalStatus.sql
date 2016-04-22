@@ -1,0 +1,1 @@
+drop table PLATFORMSAMPLEPORTAL_STATUS cascade ;

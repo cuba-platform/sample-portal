@@ -1,0 +1,43 @@
+<html ng-app="app">
+<head>
+    <title>
+        Big Cubina Burger
+    </title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="/app-portal/ang/css/common.css"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="menu-panel" ng-controller="MenuController">
+    <div class="main-container">
+        <a href="#">
+            <div class="logo">
+                Big Cubina Burger
+            </div>
+        </a>
+        <div class="user-box" ng-click='authAction()'>
+            {{loginButton}}
+        </div>
+        <a href="#/orders">
+            <div class="user-box" ng-if="authenticated">
+                Cart
+            </div>
+        </a>
+    </div>
+</div>
+<div ng-view></div>
+<div class="main-container">
+    <div class="footer-panel">
+        (c) CUBA.platform portal sample 2016
+    </div>
+</div>
+<script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="//code.angularjs.org/1.2.20/angular.js"></script>
+<script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
+<script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+
+<script src="/app-portal/ang/js/app.js"></script>
+<script src="/app-portal/ang/js/main.js"></script>
+</body>
+</html>

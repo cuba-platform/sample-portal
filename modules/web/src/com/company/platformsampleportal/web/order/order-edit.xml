@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editCaption"
+        class="com.company.platformsampleportal.web.order.OrderEdit"
+        datasource="orderDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.platformsampleportal.web.order">
+    <dsContext>
+        <datasource id="orderDs"
+                    class="com.company.platformsampleportal.entity.Order"
+                    view="order-view">
+            <collectionDatasource id="foodDs"
+                                  property="food"/>
+        </datasource>
+    </dsContext>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="orderDs">
+            <column width="200px">
+                <field id="user"/>
+                <field id="status"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="foodBox"
+                  caption="msg://com.company.platformsampleportal.entity/Order.food">
+            <table id="foodTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="add"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="weight"/>
+                    <column id="price"/>
+                </columns>
+                <rows datasource="foodDs"/>
+                <buttonsPanel>
+                    <button action="foodTable.add"/>
+                    <button action="foodTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
