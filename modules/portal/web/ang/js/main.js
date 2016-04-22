@@ -62,7 +62,9 @@
             }, function (response) {
                 if (response.status == 401) {
                     if (localStorage.getItem('username')) {
-                        $rootScope.reauth($scope.placeOrder());
+                        $rootScope.reauth(function(){
+                            $scope.placeOrder()
+                        });
                     }
                 }
             });
@@ -94,8 +96,8 @@
         .module('app')
         .controller('OrdersController', OrdersController);
 
-    OrdersController.$inject = ['$rootScope', '$scope', '$http', '$location'];
-    function OrdersController($rootScope, $scope, $http, $location) {
+    OrdersController.$inject = ['$rootScope', '$scope', '$http'];
+    function OrdersController($rootScope, $scope, $http) {
         $scope.totals = [];
         $scope.getOrders = function () {
             $http({
@@ -114,7 +116,9 @@
             }, function (response) {
                 if (response.status == 401) {
                     if (localStorage.getItem('username')) {
-                        $rootScope.reauth($scope.getOrders());
+                        $rootScope.reauth(function(){
+                            $scope.getOrders();
+                        });
                     }
                 }
             });
@@ -144,7 +148,9 @@
             }, function (response) {
                 if (response.status == 401) {
                     if (localStorage.getItem('username')) {
-                        $rootScope.reauth($scope.cancelOrder(id));
+                        $rootScope.reauth(function(){
+                            $scope.cancelOrder(id)
+                        });
                     }
                 }
             });
@@ -165,8 +171,8 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$rootScope', '$scope', '$http', '$location'];
-    function LoginController($rootScope, $scope, $http, $location) {
+    LoginController.$inject = ['$rootScope', '$http', '$location'];
+    function LoginController($rootScope, $http, $location) {
         var vm = this;
         vm.login = login;
 
@@ -198,8 +204,8 @@
         .module('app')
         .controller('MenuController', MenuController);
 
-    MenuController.$inject = ['$rootScope', '$scope', '$http', '$location'];
-    function MenuController($rootScope, $scope, $http, $location) {
+    MenuController.$inject = ['$rootScope', '$scope', '$location'];
+    function MenuController($rootScope, $scope, $location) {
         $scope.authAction = function () {
             if (localStorage.getItem('session_id')) {
                 $scope.logoutAction();
