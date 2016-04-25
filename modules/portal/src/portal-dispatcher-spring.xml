@@ -21,7 +21,7 @@
     <!-- Static resources -->
     <!--suppress SpringModelInspection -->
     <mvc:resources mapping="/resources/**" location="/resources/" cache-period="0"/>
-    <mvc:resources mapping="/ang/**" location="/ang/" cache-period="0"/>
+    <mvc:resources mapping="/**" location="/" cache-period="0"/>
 
     <!-- Default exception handlers from CUBA -->
     <bean class="com.haulmont.cuba.portal.sys.exceptions.PortalExceptionResolver">
