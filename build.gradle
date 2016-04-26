@@ -30,7 +30,7 @@ apply(plugin: 'cuba')
 
 cuba {
     artifact {
-        group = 'com.company.platformsampleportal'
+        group = 'com.company.demo'
         version = '0.1'
         isSnapshot = true
     }
@@ -114,18 +114,16 @@ configure(coreModule) {
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
         dbms = 'hsql'
-        dbmsVersion = 'null'
         host = 'localhost'
-        dbName = 'platformsampleportal'
+        dbName = 'demo'
         dbUser = 'sa'
         dbPassword = ''
     }
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
         dbms = 'hsql'
-        dbmsVersion = 'null'
         host = 'localhost'
-        dbName = 'platformsampleportal'
+        dbName = 'demo'
         dbUser = 'sa'
         dbPassword = ''
     }
@@ -142,7 +140,7 @@ configure(guiModule) {
 
     task deployConf(type: Copy) {
         from file('src')
-        include "com/company/platformsampleportal/**"
+        include "com/company/demo/**"
         into "$cuba.tomcat.dir/conf/app"
     }
 }
@@ -175,7 +173,7 @@ configure(webModule) {
 
     task deployConf(type: Copy) {
         from file('src')
-        include "com/company/platformsampleportal/**"
+        include "com/company/demo/**"
         into "$cuba.tomcat.dir/conf/app"
     }
 

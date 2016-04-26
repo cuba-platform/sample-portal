@@ -30,8 +30,8 @@
             .otherwise({ redirectTo: '/login' });
     }
 
-    run.$inject = ['$rootScope', '$http'];
-    function run($rootScope, $http) {
+    run.$inject = ['$rootScope', '$http', '$location'];
+    function run($rootScope, $http, $location) {
         $rootScope.checkLogin = function () {
             if (localStorage.getItem('session_id')) {
                 $rootScope.authenticated = true;
@@ -57,7 +57,8 @@
                 console.log("Session dead. Reauth");
                 repeatFunction();
             }, function (response) {
-                // Strange err
+                localStorage.removeItem('session_id');
+                $location.path('/orders');
             });
         };
 

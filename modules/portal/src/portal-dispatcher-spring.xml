@@ -15,7 +15,7 @@
     <mvc:view-controller path="/error/500"/>
     <mvc:view-controller path="/maintain"/>
 
-    <context:component-scan base-package="com.company.platformsampleportal.portal.controllers"/>
+    <context:component-scan base-package="com.company.demo.portal.controllers"/>
     <context:component-scan base-package="com.haulmont.cuba.restapi"/>
 
     <!-- Static resources -->

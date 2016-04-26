@@ -2,7 +2,7 @@
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application"
           insertBefore="administration">
-        <item id="platformsampleportal$Food.browse"/>
-        <item id="platformsampleportal$Order.browse"/>
+        <item id="demo$Food.browse"/>
+        <item id="demo$Order.browse"/>
     </menu>
 </menu-config>

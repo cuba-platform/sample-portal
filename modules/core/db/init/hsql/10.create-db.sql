@@ -1,5 +1,5 @@
--- begin PLATFORMSAMPLEPORTAL_FOOD
-create table PLATFORMSAMPLEPORTAL_FOOD (
+-- begin DEMO_FOOD
+create table DEMO_FOOD (
     ID varchar(36) not null,
     CREATE_TS timestamp,
     CREATED_BY varchar(50),
@@ -15,10 +15,10 @@ create table PLATFORMSAMPLEPORTAL_FOOD (
     --
     primary key (ID)
 )^
--- end PLATFORMSAMPLEPORTAL_FOOD
+-- end DEMO_FOOD
 
--- begin PLATFORMSAMPLEPORTAL_ORDER
-create table PLATFORMSAMPLEPORTAL_ORDER (
+-- begin DEMO_ORDER
+create table DEMO_ORDER (
     ID varchar(36) not null,
     CREATE_TS timestamp,
     CREATED_BY varchar(50),
@@ -33,11 +33,11 @@ create table PLATFORMSAMPLEPORTAL_ORDER (
     --
     primary key (ID)
 )^
--- end PLATFORMSAMPLEPORTAL_ORDER
--- begin PLATFORMSAMPLEPORTAL_ORDER_FOOD_LINK
-create table PLATFORMSAMPLEPORTAL_ORDER_FOOD_LINK (
+-- end DEMO_ORDER
+-- begin DEMO_ORDER_FOOD_LINK
+create table DEMO_ORDER_FOOD_LINK (
     ORDER_ID varchar(36) not null,
     FOOD_ID varchar(36) not null,
     primary key (ORDER_ID, FOOD_ID)
 )^
--- end PLATFORMSAMPLEPORTAL_ORDER_FOOD_LINK
+-- end DEMO_ORDER_FOOD_LINK

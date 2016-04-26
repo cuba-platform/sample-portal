@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2016 platform-sample-portal
+  -->
+
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editCaption"
+        class="com.company.demo.web.food.FoodEdit"
+        datasource="foodDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.demo.web.food">
+    <dsContext>
+        <datasource id="foodDs"
+                    class="com.company.demo.entity.Food"
+                    view="_local"/>
+    </dsContext>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="foodDs">
+            <column width="200px">
+                <field id="name"/>
+                <field id="weight"/>
+                <field id="price"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

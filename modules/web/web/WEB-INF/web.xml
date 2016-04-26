@@ -33,7 +33,7 @@
         <init-param>
             <description>Application class</description>
             <param-name>application</param-name>
-            <param-value>com.company.platformsampleportal.web.App</param-value>
+            <param-value>com.company.demo.web.App</param-value>
         </init-param>
         <init-param>
             <description>Widgetset name</description>

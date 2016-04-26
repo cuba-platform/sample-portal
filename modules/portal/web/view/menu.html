@@ -2,15 +2,11 @@
     <h1>Burgers</h1>
     <div class="table-border">
         <table class="shop-list" border="1">
-            <col/>
-            <col width="50px" />
-            <col width="100px" />
-            <col width="120px" />
             <tr>
                 <th>Name</th>
-                <th width="100px">Size (gr)</th>
-                <th>Price</th>
-                <th ng-if="authenticated">Order</th>
+                <th width="50px">Size (gr)</th>
+                <th width="100px">Price</th>
+                <th width="120px"ng-if="authenticated">Order</th>
             </tr>
             <tr ng-repeat = "item in food">
                 <td>{{ item.name }}</td>

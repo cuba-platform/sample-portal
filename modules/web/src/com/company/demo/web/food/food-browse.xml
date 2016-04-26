@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2016 platform-sample-portal
+  -->
+
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.demo.web.food.FoodBrowse"
+        focusComponent="foodsTable"
+        lookupComponent="foodsTable"
+        messagesPack="com.company.demo.web.food">
+    <dsContext>
+        <collectionDatasource id="foodsDs"
+                              class="com.company.demo.entity.Food"
+                              view="_local">
+            <query>
+                <![CDATA[select e from demo$Food e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <layout expand="foodsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="foodsTable"
+                datasource="foodsDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="foodsTable"
+               width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="weight"/>
+                <column id="price"/>
+            </columns>
+            <rows datasource="foodsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="foodsTable.create"/>
+                <button id="editBtn"
+                        action="foodsTable.edit"/>
+                <button id="removeBtn"
+                        action="foodsTable.remove"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

@@ -1,1 +1,164 @@
+insert into SEC_ROLE
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, LOC_NAME, DESCRIPTION, ROLE_TYPE, IS_DEFAULT_ROLE)
+values ('be155ab8-c2bf-848d-26bc-3e8d2c584671', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 'Customers', 'Customers', null, 0, null);
 
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('1a350352-ef17-154b-9288-b2b78c75c231', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:version', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('8127a75d-14f2-bc2b-99d8-0c9c3b63abc1', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 10, 'application', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('dc8ff27c-9568-7080-362b-0623acf37be7', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$User:update', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('6209684b-8baa-148f-54f7-3b1d5890ced7', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Order:update', 1, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('486b6f73-f15d-d779-0c0d-850b1634e902', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$Role:create', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('f4d1b514-7102-5eac-8431-5c6db0a90110', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 10, 'administration', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('aef64417-b960-2146-2637-8bad9c4453d7', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$Role:update', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('daf1ba8f-1f91-9498-b31e-d82267271e3c', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:deleteTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('b2277063-3f79-d5d6-4e3c-10bc5c79f8c0', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$User:delete', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('d2cf85d3-2e14-79fc-9bd5-25139c4edd2a', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$Group:delete', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('2a15f224-f4f4-1118-dc2b-a8ae93588097', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Order:delete', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('41e259b2-2595-3909-6484-130247bddd69', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Food:read', 1, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('361e596b-76b1-3b34-5bc9-f532e8f638a2', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$Role:read', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('3326fb12-4b4d-3eb6-34d3-d92d0cafef01', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$User:create', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('8b0174c4-faa6-b443-3337-4ea85b2804f6', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Food:update', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('ba07e01d-124e-effb-2aa3-1e92e7cb93b6', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:updatedBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('3d9993a1-24fc-c8ef-c867-b0708b285db0', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 10, 'help', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('fc163c92-bd60-186f-379d-08d13eaf4744', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Food:delete', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('35234f72-0003-66db-1eb8-96382500f0e5', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Order:create', 1, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('630d12fa-66d5-11fb-4e59-0fadee7e087f', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:createTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('c2a5adf6-f0af-4440-a483-8612ec742e37', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$Group:create', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('8dd098ee-6d9c-0b61-c169-7e1111930a19', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Food:create', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('614d1971-e08a-7bff-5c85-360cca923b23', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$User:read', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('35275b3d-3906-28e8-a90c-0613f41fc845', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:updateTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('d817cb26-5a00-c1f7-4fa9-965d1b6548e3', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$Role:delete', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('6754d16c-d37a-9c9b-a889-d2cd80dae0bd', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Order:read', 1, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('7c1c63b7-bb7f-76aa-a201-a851fb916c85', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$Group:read', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('f8422c09-de2f-c1b3-8e07-007a38e7ffb0', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'sec$Group:update', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('b182d849-3e25-b23c-58fa-80a520572f27', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:deletedBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_PERMISSION
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
+values ('d9c74553-e3c9-8ec2-ca12-60579ee8c58d', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:createdBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+
+insert into SEC_GROUP
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, PARENT_ID)
+values ('ea15ca02-7bb2-7225-237c-7f3d5921dcc8', '2016-04-26 11:50:48', 'admin', 1, '2016-04-26 11:50:48', null, null, null, 'Customer', null);
+
+insert into SEC_CONSTRAINT
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, CHECK_TYPE, OPERATION_TYPE, CODE, ENTITY_NAME, JOIN_CLAUSE, WHERE_CLAUSE, GROOVY_SCRIPT, FILTER_XML, IS_ACTIVE, GROUP_ID)
+values ('c12f52e4-d0f7-2ed9-ff68-865779643a0a', '2016-04-26 12:01:11', 'admin', 1, '2016-04-26 12:01:11', null, null, null, 'db', 'read', null, 'demo$Order', null, '{E}.createdBy = :session$userLogin', null, '<?xml version="1.0" encoding="UTF-8"?>
+
+<filter>
+  <and>
+    <c name="createdBy" class="java.lang.String" operatorType="EQUAL" width="1" type="PROPERTY"><![CDATA[queryEntity.createdBy = :component$filterWithoutId.createdBy54521]]>
+      <param name="component$filterWithoutId.createdBy54521" javaClass="java.lang.String">NULL</param>
+    </c>
+  </and>
+</filter>
+', true, 'ea15ca02-7bb2-7225-237c-7f3d5921dcc8');
+
+insert into SEC_USER
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD, NAME, FIRST_NAME, LAST_NAME, MIDDLE_NAME, POSITION_, EMAIL, LANGUAGE_, TIME_ZONE, TIME_ZONE_AUTO, ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, IP_MASK)
+values ('1c1fb6a7-4629-1999-b891-2b869cbdc193', '2016-04-26 11:54:48', 'admin', 1, '2016-04-26 11:54:48', null, null, null, 'demo', 'demo', 'ac2f77a70503dc1f7b15dd312cd67e559b39226d', null, null, null, null, null, null, 'en', null, null, true, false, 'ea15ca02-7bb2-7225-237c-7f3d5921dcc8', null);
+
+insert into DEMO_FOOD
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
+values ('a28c65d4-a61b-7c64-8386-5f88d3c244a9', '2016-04-26 12:30:54', 'admin', 2, '2016-04-26 12:50:03', null, null, null, 'Double NPE', 200, 5);
+
+insert into DEMO_FOOD
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
+values ('f30bb5e6-29e4-4cf1-8d1a-db1a94ed2084', '2016-04-26 12:50:35', 'admin', 1, '2016-04-26 12:50:35', null, null, null, 'Long Java', 250, 3);
+
+insert into DEMO_FOOD
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
+values ('7eacff1e-0879-ca8b-6407-b0de766aba67', '2016-04-26 12:50:59', 'admin', 1, '2016-04-26 12:50:59', null, null, null, 'LeBoorondoque Fries', 350, 5);
+
+insert into DEMO_FOOD
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
+values ('46cf913b-a6b7-e25f-7aee-2cdfc5bc8412', '2016-04-26 12:51:26', 'admin', 1, '2016-04-26 12:51:26', null, null, null, 'Bug Bacon', 350, 4);
+
+insert into DEMO_FOOD
+(ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
+values ('4049628a-4cc7-b48d-10ed-fed4f4801121', '2016-04-26 12:51:40', 'admin', 1, '2016-04-26 12:51:40', null, null, null, 'Chicken Deploy', 250, 3);

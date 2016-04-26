@@ -48,7 +48,7 @@
                 url: '/app-portal/api/commit',
                 data: {
                     "commitInstances": [{
-                        "id": "NEW-platformsampleportal$Order",
+                        "id": "NEW-demo$Order",
                         "food": $scope.orders
                     }]
                 },
@@ -106,8 +106,8 @@
                 url: '/app-portal/api/query.json',
                 params: {
                     "s": localStorage.getItem('session_id'),
-                    "e": "platformsampleportal$Order",
-                    "q": "select u from platformsampleportal$Order u order by u.createTs",
+                    "e": "demo$Order",
+                    "q": "select u from demo$Order u order by u.createTs",
                     "view": "order-view"
                 }
             }).then(function (response) {

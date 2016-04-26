@@ -1,1 +1,0 @@
-drop table PLATFORMSAMPLEPORTAL_ORDERS_FOOD_LINK cascade ;

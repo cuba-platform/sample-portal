@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2016 platform-sample-portal
+  -->
+
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.demo.web.order.OrderBrowse"
+        focusComponent="ordersTable"
+        lookupComponent="ordersTable"
+        messagesPack="com.company.demo.web.order">
+    <dsContext>
+        <collectionDatasource id="ordersDs"
+                              class="com.company.demo.entity.Order"
+                              view="order-view">
+            <query>
+                <![CDATA[select e from demo$Order e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <layout expand="ordersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="ordersTable"
+                datasource="ordersDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="ordersTable"
+               width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="user"/>
+                <column id="status"/>
+            </columns>
+            <rows datasource="ordersDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="ordersTable.create"/>
+                <button id="editBtn"
+                        action="ordersTable.edit"/>
+                <button id="removeBtn"
+                        action="ordersTable.remove"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>
