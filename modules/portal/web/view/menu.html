@@ -1,42 +1,56 @@
 <div class="main-container" ng-controller="FoodListController">
     <h1>Burgers</h1>
-    <div class="table-border">
-        <table class="shop-list" border="1">
-            <tr>
-                <th>Name</th>
-                <th width="50px">Size (gr)</th>
-                <th width="100px">Price</th>
-                <th width="120px"ng-if="authenticated">Order</th>
-            </tr>
-            <tr ng-repeat = "item in food">
-                <td>{{ item.name }}</td>
-                <td>{{ item.weight }}</td>
-                <td>{{ item.price }} USD</td>
-                <td class="al-center item-order-button" ng-if="$root.authenticated"><button value="{{ item.id }}" ng-model="addToCartButton" ng-click='addToCart(item.id)'>Add to cart</button></td>
-            </tr>
-        </table>
-    </div>
-    <div class="cart" ng-if="$root.authenticated">
-        <div class="cart-header">Cart</div>
-        <div class="table-border">
-            <table class="shop-list">
-                <tr>
-                    <td>Burger</td>
-                    <td>Price</td>
-                    <td></td>
-                </tr>
-                <tr ng-repeat = "item in orders">
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.price }} USD</td>
-                    <td><div class="remove-item" ng-click='removeFromCart(item.id)'>X</div></td>
-                </tr>
-                <tr ng-if="emptyCart==false" class="cart-total">
-                    <td>Total</td>
-                    <td>{{ cartTotal }} USD</td>
-                </tr>
-            </table>
-            <div class="empty-cart-message" ng-if="emptyCart">Cart is empty</div>
-        </div>
-        <button ng-disabled="emptyCart" ng-click="placeOrder()">Place order</button>
-    </div>
+    <table width="100%">
+        <tr>
+            <td valign="top">
+                <div class="table-border">
+                    <table class="shop-list" border="1">
+                        <tr>
+                            <th>Name</th>
+                            <th width="100px">Size (gr)</th>
+                            <th width="100px">Price</th>
+                            <th width="120px" ng-if="authenticated">Order</th>
+                        </tr>
+                        <tr ng-repeat="item in food">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.weight }}</td>
+                            <td>{{ item.price }} USD</td>
+                            <td class="al-center item-order-button" ng-if="$root.authenticated">
+                                <button value="{{ item.id }}" ng-model="addToCartButton" ng-click='addToCart(item.id)'>
+                                    Add to cart
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td width="250px" ng-if="$root.authenticated" valign="top">
+                <div class="cart" ng-if="$root.authenticated">
+                    <div class="cart-header">Cart</div>
+                    <div class="table-border">
+                        <table class="shop-list">
+                            <tr>
+                                <td>Burger</td>
+                                <td>Price</td>
+                                <td></td>
+                            </tr>
+                            <tr ng-repeat="item in orders">
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.price }} USD</td>
+                                <td>
+                                    <div class="remove-item" ng-click='removeFromCart(item.id)'>X</div>
+                                </td>
+                            </tr>
+                            <tr ng-if="emptyCart==false" class="cart-total">
+                                <td>Total</td>
+                                <td>{{ cartTotal }} USD</td>
+                            </tr>
+                        </table>
+                        <div class="empty-cart-message" ng-if="emptyCart">Cart is empty</div>
+                    </div>
+                    <button ng-disabled="emptyCart" ng-click="placeOrder()">Place order</button>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>

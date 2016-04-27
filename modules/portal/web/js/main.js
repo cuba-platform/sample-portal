@@ -175,6 +175,8 @@
     function LoginController($rootScope, $http, $location) {
         var vm = this;
         vm.login = login;
+        vm.username = "demo";
+        vm.password = "demo";
 
         function login() {
             $http({
@@ -231,10 +233,8 @@
 })();
 
 function timeConverter(items) {
-    var date;
     for (var i = 0; i < items.length; ++i) {
-        date = new Date(items[i].createTs);
-        items[i].createTs = date.getFullYear() + "." + (date.getMonth()+1) + "." + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+        items[i].createTs = items[i].createTs.substring(0, items[i].createTs.indexOf("."));
     }
     return items;
 }

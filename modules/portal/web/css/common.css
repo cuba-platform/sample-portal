@@ -103,7 +103,6 @@ th, td {
 
 .table-border {
 	border-radius: 5px;
-	margin-top: 20px;
 	border: 1px solid #E0E0E0;
   overflow: hidden;
 	background-color: white;
@@ -153,8 +152,6 @@ button {
 
 .cart {
 	width: 250px;
-	position: fixed;
-	top: 65px;
 	right: 20px;
 	background: white;
 	border: 1px solid #E0E0E0;
