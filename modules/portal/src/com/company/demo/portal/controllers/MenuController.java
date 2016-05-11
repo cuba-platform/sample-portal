@@ -12,6 +12,8 @@ import com.haulmont.cuba.core.global.LoadContext;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.restapi.ConversionFactory;
 import com.haulmont.cuba.restapi.Convertor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,8 @@ import java.util.List;
 
 @Controller
 public class MenuController {
+
+    protected Logger log = LoggerFactory.getLogger(getClass());
 
     @Inject
     protected ConversionFactory conversionFactory;
@@ -47,7 +51,7 @@ public class MenuController {
         try {
             result = convertor.process(entities, metaClass, loadCtx.getView());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error converting json", e);
         }
 
         return result;
