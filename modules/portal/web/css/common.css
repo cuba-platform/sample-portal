@@ -1,13 +1,13 @@
 @font-face {
-	font-family: 'Open Sans';
-	font-style: normal;
-	font-weight: 400;
-	src: local('Open Sans'), local('OpenSans'), url(../fonts/open_sans.woff2) format('woff2');
-	unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(../fonts/open_sans.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
 }
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
-	display: none !important;
+  display: none !important;
 }
 
 html, body {
@@ -15,86 +15,86 @@ html, body {
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-	background: #F3F3F3;
+  background: #F3F3F3;
 }
 
 .menu-panel {
   width: 100%;
-	padding: 10px 0;
+  padding: 10px 0;
   background: #F9F9F9;
   border-bottom: 1px solid #E0E0E0;
 }
 
 .main-container {
-	width: 1000px;
-	margin: 0 auto;
+  width: 1000px;
+  margin: 0 auto;
 }
 
 .small-container {
-	width: 300px;
-	margin: 50px auto;
+  width: 300px;
+  margin: 50px auto;
 }
 
 .menu-panel .logo {
-	display: inline-block;
-	font-weight: bold;
-	text-transform: uppercase;
-	color: black;
+  display: inline-block;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
 }
 
 .menu-panel .buttons {
-	width: 400px;
-	display: inline-block;
-	float: right;
-	text-align: right;
+  width: 400px;
+  display: inline-block;
+  float: right;
+  text-align: right;
 }
 
 .menu-panel .button {
-	display: inline-block;
-	vertical-align: top;
-	padding: 0 10px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 10px;
   cursor: pointer;
 }
 
 .menu-panel .user-box {
-	display: inline-block;
-	float: right;
-	color: black;
-	padding-left: 10px;
-	cursor: pointer;
+  display: inline-block;
+  float: right;
+  color: black;
+  padding-left: 10px;
+  cursor: pointer;
 }
 
 .menu-panel .user-box:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .menu-panel .user-box a {
-	color: black;
+  color: black;
 }
 
-.menu-panel .user-box form{
-    display: inline-block;
-    padding-left: 10px;
+.menu-panel .user-box form {
+  display: inline-block;
+  padding-left: 10px;
 }
 
 .shop-list {
-	width: 100%;
-	border-collapse: collapse;
-	border-radius: 5px;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
   overflow: hidden;
 }
 
 .cart .shop-list {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 .shop-list th {
-	background-color: #F9F9F9;
+  background-color: #F9F9F9;
   padding: 10px;
 }
 
 .shop-list td {
-	padding: 10px;
+  padding: 10px;
 }
 
 th, td {
@@ -102,15 +102,15 @@ th, td {
 }
 
 .table-border {
-	border-radius: 5px;
-	border: 1px solid #E0E0E0;
+  border-radius: 5px;
+  border: 1px solid #E0E0E0;
   overflow: hidden;
-	background-color: white;
-	width: 100%;
+  background-color: white;
+  width: 100%;
 }
 
 input {
-	padding: 5px;
+  padding: 5px;
   border: 1px solid #E0E0E0;
   border-radius: 3px;
   width: 100%;
@@ -119,18 +119,18 @@ input {
 }
 
 .login-container {
-	width: 300px;
-	margin: 0 auto;
+  width: 300px;
+  margin: 0 auto;
 }
 
 button {
-	padding: 5px;
+  padding: 5px;
   border: 1px solid #E0E0E0;
   border-radius: 3px;
   background-color: #F9F9F9;
   margin-top: 5px;
   width: 100px;
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .al-center {
@@ -138,61 +138,62 @@ button {
 }
 
 .auth-failed {
-	border: 1px solid red;
-	border-radius: 5px;
-	padding: 5px;
-	margin: 20px 0;
-	color: red;
-	font-size: 12px;
-	background-color: #FFC9C9;
-	font-weight: bold;
-	text-align: center;
-	text-transform: uppercase;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 20px 0;
+  color: red;
+  font-size: 12px;
+  background-color: #FFC9C9;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .cart {
-	width: 250px;
-	right: 20px;
-	background: white;
-	border: 1px solid #E0E0E0;
-	padding: 15px;
-	border-radius: 5px;
+  width: 250px;
+  right: 20px;
+  background: white;
+  border: 1px solid #E0E0E0;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 .empty-cart-message {
-	text-align: center;
-	padding: 20px;
-	font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
 }
 
 .cart-header {
-	font-weight: bold;
-	font-size: 20px;
+  font-weight: bold;
+  font-size: 20px;
 }
+
 .cart-total {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .notification {
-	position: fixed;
-	padding: 10px;
-	font-size: 20px;
-	border-radius: 5px;
-	top: 200px;
-	left: calc(50% - 100px);
-	width: 200px;
-	text-align: center;
-	background-color: rgba(78, 78, 78, 0.62);
+  position: fixed;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  top: 200px;
+  left: calc(50% - 100px);
+  width: 200px;
+  text-align: center;
+  background-color: rgba(78, 78, 78, 0.62);
 }
 
 .footer-panel {
-	text-align: center;
-	font-size: 12px;
-	color: #B7B7B7;
-	padding: 20px 0;
+  text-align: center;
+  font-size: 12px;
+  color: #B7B7B7;
+  padding: 20px 0;
 }
 
 .remove-item {
-	font-weight: bold;
-	cursor: pointer;
+  font-weight: bold;
+  cursor: pointer;
 }
