@@ -44,7 +44,7 @@ public class MenuController {
 
         Convertor convertor = conversionFactory.getConvertor("json");
         List<Entity> entities = dataService.loadList(l);
-        MetaClass metaClass = metadata.getClass(Food.class);
+        MetaClass metaClass = metadata.getClassNN(Food.class);
         LoadContext loadCtx = new LoadContext(metaClass);
         String result = "";
 
