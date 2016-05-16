@@ -30,4 +30,4 @@ You can change status of your order via Order editor or you can set status `Canc
 * Open Orders browser to add a new food item
 * Refresh `http://localhost:8080/app-portal` to see it
 
-Based on CUBA Platform 6.2
+Based on CUBA Platform 6.1.2
