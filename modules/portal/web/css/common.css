@@ -19,14 +19,14 @@ html, body {
 }
 
 .menu-panel {
-  width: 100%;
+  min-width: 900px;
   padding: 10px 0;
   background: #F9F9F9;
   border-bottom: 1px solid #E0E0E0;
 }
 
 .main-container {
-  width: 1000px;
+  width: 900px;
   margin: 0 auto;
 }
 
