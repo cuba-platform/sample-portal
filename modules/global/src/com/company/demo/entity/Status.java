@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2016 platform-sample-portal
- */
-
 package com.company.demo.entity;
 
 import com.haulmont.chile.core.datatypes.impl.EnumClass;

@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2016 platform-sample-portal
- */
-
 package com.company.demo.orderlistener;
 
 import com.company.demo.entity.Status;
