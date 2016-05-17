@@ -7,7 +7,7 @@
 
     FoodListController.$inject = ['$scope', '$rootScope', '$http', '$location'];
     function FoodListController($scope, $rootScope, $http, $location) {
-        var url = "/app-portal/menu";
+        var url = '/app-portal/menu';
         $http({
             method: 'GET',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -17,20 +17,20 @@
         }, function (response) {
         });
 
-        if (localStorage.getItem('orders')) {
-            $scope.orders = JSON.parse(localStorage.getItem('orders'));
+        if (localStorage.getItem('cartItems')) {
+            $scope.cartItems = JSON.parse(localStorage.getItem('cartItems'));
         } else {
-            $scope.orders = [];
-            localStorage.setItem('orders', "");
+            $scope.cartItems = [];
+            localStorage.setItem('cartItems', '');
         }
 
         $scope.cartTotal = 0;
         checkCart();
 
         $scope.addToCart = function (id) {
-            var selectedItem = findItems($scope.orders, $scope.food, id);
+            var selectedItem = findItems($scope.cartItems, $scope.food, id);
             if (selectedItem != null) {
-                $scope.orders.push(selectedItem);
+                $scope.cartItems.push(selectedItem);
                 checkCart();
                 $scope.getTotal();
                 $scope.updateCartStorage();
@@ -38,7 +38,7 @@
         };
 
         $scope.updateCartStorage = function () {
-            localStorage.setItem('orders', JSON.stringify($scope.orders));
+            localStorage.setItem('cartItems', JSON.stringify($scope.cartItems));
         };
 
         $scope.placeOrder = function () {
@@ -47,14 +47,14 @@
                 headers: {'Content-Type': 'application/json'},
                 url: '/app-portal/api/commit',
                 data: {
-                    "commitInstances": [{
-                        "id": "NEW-demo$Order",
-                        "food": $scope.orders
+                    'commitInstances': [{
+                        'id': 'NEW-demo$Order',
+                        'food': $scope.cartItems
                     }]
                 },
-                params: {"s": localStorage.getItem('session_id')}
+                params: {'s': localStorage.getItem('session_id')}
             }).then(function (response) {
-                $scope.orders = [];
+                $scope.cartItems = [];
                 $scope.updateCartStorage();
                 checkCart();
                 $scope.getTotal();
@@ -71,9 +71,9 @@
         };
 
         $scope.removeFromCart = function (id) {
-            for (var i = 0; i < $scope.orders.length; ++i) {
-                if ($scope.orders[i].id == id)
-                    $scope.orders.splice(i, 1);
+            for (var i = 0; i < $scope.cartItems.length; ++i) {
+                if ($scope.cartItems[i].id == id)
+                    $scope.cartItems.splice(i, 1);
             }
             checkCart();
             $scope.getTotal();
@@ -82,13 +82,13 @@
 
         $scope.getTotal = function () {
             $scope.cartTotal = 0;
-            for (var i = 0; i < $scope.orders.length; ++i) {
-                $scope.cartTotal += parseInt($scope.orders[i].price);
+            for (var i = 0; i < $scope.cartItems.length; ++i) {
+                $scope.cartTotal += parseInt($scope.cartItems[i].price);
             }
         };
 
         function checkCart() {
-            $scope.emptyCart = $scope.orders.length == 0;
+            $scope.emptyCart = $scope.cartItems.length == 0;
         }
     }
 
@@ -105,10 +105,10 @@
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 url: '/app-portal/api/query.json',
                 params: {
-                    "s": localStorage.getItem('session_id'),
-                    "e": "demo$Order",
-                    "q": "select u from demo$Order u order by u.createTs",
-                    "view": "order-view"
+                    's': localStorage.getItem('session_id'),
+                    'e': 'demo$Order',
+                    'q': 'select u from demo$Order u order by u.createTs',
+                    'view': 'order-view'
                 }
             }).then(function (response) {
                 $scope.orders = timeConverter(response.data);
@@ -131,18 +131,18 @@
                 headers: {'Content-Type': 'application/json'},
                 url: '/app-portal/api/commit',
                 data: {
-                    "commitInstances": [{
-                        "id": id,
-                        "status": "40"
+                    'commitInstances': [{
+                        'id': id,
+                        'status': '40'
                     }]
                 },
                 params: {
-                    "s": localStorage.getItem('session_id')
+                    's': localStorage.getItem('session_id')
                 }
             }).then(function (response) {
-                for (var i = 0; i < $scope.orders.length; ++i) {
-                    if ($scope.orders[i].id == id) {
-                        $scope.orders[i].status = 40;
+                for (var i = 0; i < $scope.cartItems.length; ++i) {
+                    if ($scope.cartItems[i].id == id) {
+                        $scope.cartItems[i].status = 40;
                     }
                 }
             }, function (response) {
@@ -157,10 +157,10 @@
         };
 
         $scope.calcTotals = function () {
-            for (var i = 0; i < $scope.orders.length; ++i) {
+            for (var i = 0; i < $scope.cartItems.length; ++i) {
                 var totalItem = 0;
-                for (var j = 0; j < $scope.orders[i].food.length; ++j) {
-                    totalItem = totalItem + parseInt($scope.orders[i].food[j].price);
+                for (var j = 0; j < $scope.cartItems[i].food.length; ++j) {
+                    totalItem = totalItem + parseInt($scope.cartItems[i].food[j].price);
                 }
                 $scope.totals.push(totalItem);
             }
@@ -175,19 +175,19 @@
     function LoginController($rootScope, $http, $location) {
         var vm = this;
         vm.login = login;
-        vm.username = "demo";
-        vm.password = "demo";
+        vm.username = 'demo';
+        vm.password = 'demo';
 
         function login() {
             $http({
-                method: "POST",
-                url: "/app-portal/api/login",
+                method: 'POST',
+                url: '/app-portal/api/login',
                 data: {
-                    "username": vm.username,
-                    "password": vm.password,
-                    "locale": "en"
+                    'username': vm.username,
+                    'password': vm.password,
+                    'locale': 'en'
                 },
-                contentType: "application/x-www-form-urlencoded"
+                contentType: 'application/x-www-form-urlencoded'
             }).then(function (response) {
                 localStorage.setItem('session_id', response.data);
                 localStorage.setItem('username', vm.username);
@@ -220,7 +220,7 @@
             localStorage.removeItem('session_id');
             localStorage.removeItem('username');
             localStorage.removeItem('password');
-            localStorage.removeItem('orders');
+            localStorage.removeItem('cartItems');
             $rootScope.checkLogin($rootScope);
             $location.path('/');
         };
@@ -234,7 +234,7 @@
 
 function timeConverter(items) {
     for (var i = 0; i < items.length; ++i) {
-        items[i].createTs = items[i].createTs.substring(0, items[i].createTs.indexOf("."));
+        items[i].createTs = items[i].createTs.substring(0, items[i].createTs.indexOf('.'));
     }
     return items;
 }
