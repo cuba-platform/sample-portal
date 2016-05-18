@@ -15,10 +15,11 @@ create table DEMO_ORDER (
     primary key (ID)
 )^
 -- end DEMO_ORDER
--- begin DEMO_ORDER_FOOD_LINKcreate table DEMO_ORDER_FOOD_LINK (
+-- begin DEMO_ORDER_FOOD_LINK
+create table DEMO_ORDER_FOOD_LINK (
     ORDER_ID varchar(36) not null,
-    FOOD_ID varchar(36) not null,
-    primary key (ORDER_ID, FOOD_ID)
+    MENU_ITEM_ID varchar(36) not null,
+    primary key (ORDER_ID, MENU_ITEM_ID)
 )^
 -- end DEMO_ORDER_FOOD_LINK
 -- begin DEMO_MENU_ITEM

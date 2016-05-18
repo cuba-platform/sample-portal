@@ -37,7 +37,7 @@ public class Order extends StandardEntity {
 
     @JoinTable(name = "DEMO_ORDER_FOOD_LINK",
         joinColumns = @JoinColumn(name = "ORDER_ID"),
-        inverseJoinColumns = @JoinColumn(name = "FOOD_ID"))
+        inverseJoinColumns = @JoinColumn(name = "MENU_ITEM_ID"))
     @ManyToMany
     protected Set<MenuItem> food;
 
