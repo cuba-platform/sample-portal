@@ -197,3 +197,7 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+.padding-panel {
+  width: 894px;
+}

@@ -140,9 +140,9 @@
                     's': localStorage.getItem('session_id')
                 }
             }).then(function (response) {
-                for (var i = 0; i < $scope.cartItems.length; ++i) {
-                    if ($scope.cartItems[i].id == id) {
-                        $scope.cartItems[i].status = 40;
+                for (var i = 0; i < $scope.orders.length; ++i) {
+                    if ($scope.orders[i].id == id) {
+                        $scope.orders[i].status = 40;
                     }
                 }
             }, function (response) {
@@ -157,10 +157,10 @@
         };
 
         $scope.calcTotals = function () {
-            for (var i = 0; i < $scope.cartItems.length; ++i) {
+            for (var i = 0; i < $scope.orders.length; ++i) {
                 var totalItem = 0;
-                for (var j = 0; j < $scope.cartItems[i].food.length; ++j) {
-                    totalItem = totalItem + parseInt($scope.cartItems[i].food[j].price);
+                for (var j = 0; j < $scope.orders[i].food.length; ++j) {
+                    totalItem = totalItem + parseInt($scope.orders[i].food[j].price);
                 }
                 $scope.totals.push(totalItem);
             }
