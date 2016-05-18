@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.company.demo.web.food;
+package com.company.demo.web.item;
 
-import com.haulmont.cuba.gui.components.AbstractEditor;
-import com.company.demo.entity.Food;
+import com.haulmont.cuba.gui.components.AbstractLookup;
 
-public class FoodEdit extends AbstractEditor<Food> {
+public class MenuItemBrowse extends AbstractLookup {
 }

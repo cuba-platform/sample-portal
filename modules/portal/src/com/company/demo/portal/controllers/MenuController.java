@@ -16,7 +16,7 @@
 
 package com.company.demo.portal.controllers;
 
-import com.company.demo.entity.Food;
+import com.company.demo.entity.MenuItem;
 import com.haulmont.chile.core.model.MetaClass;
 import com.haulmont.cuba.core.app.DataService;
 import com.haulmont.cuba.core.global.LoadContext;
@@ -51,12 +51,12 @@ public class MenuController {
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
     @ResponseBody
     public String menu() {
-        LoadContext<Food> foodLoadContext = new LoadContext<>(Food.class)
-            .setQuery(LoadContext.createQuery("select u from demo$Food u"))
+        LoadContext<MenuItem> foodLoadContext = new LoadContext<>(MenuItem.class)
+            .setQuery(LoadContext.createQuery("select u from demo$MenuItem u"))
             .setView(View.LOCAL);
 
-        List<Food> entities = dataService.loadList(foodLoadContext);
-        MetaClass metaClass = metadata.getClassNN(Food.class);
+        List<MenuItem> entities = dataService.loadList(foodLoadContext);
+        MetaClass metaClass = metadata.getClassNN(MenuItem.class);
 
         Convertor convertor = conversionFactory.getConvertor("json");
 

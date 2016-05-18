@@ -14,16 +14,15 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://editCaption"
-        class="com.company.demo.web.food.FoodEdit"
+        class="com.company.demo.web.item.MenuItemEdit"
         datasource="foodDs"
         focusComponent="fieldGroup"
-        messagesPack="com.company.demo.web.food">
+        messagesPack="com.company.demo.web.item">
     <dsContext>
         <datasource id="foodDs"
-                    class="com.company.demo.entity.Food"
+                    class="com.company.demo.entity.MenuItem"
                     view="_local"/>
     </dsContext>
     <layout expand="windowActions"

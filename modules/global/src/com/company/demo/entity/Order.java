@@ -39,10 +39,19 @@ public class Order extends StandardEntity {
         joinColumns = @JoinColumn(name = "ORDER_ID"),
         inverseJoinColumns = @JoinColumn(name = "FOOD_ID"))
     @ManyToMany
-    protected Set<Food> food;
+    protected Set<MenuItem> food;
 
     @Column(name = "STATUS")
     protected Integer status;
+    public Set<MenuItem> getFood() {
+        return food;
+    }
+
+    public void setFood(Set<MenuItem> food) {
+        this.food = food;
+    }
+
+
 
     public void setStatus(Status status) {
         this.status = status == null ? null : status.getId();
@@ -53,13 +62,7 @@ public class Order extends StandardEntity {
     }
 
 
-    public Set<Food> getFood() {
-        return food;
-    }
 
-    public void setFood(Set<Food> food) {
-        this.food = food;
-    }
 
 
     public void setUser(User user) {

@@ -14,15 +14,14 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
     <include file="/screens.xml"/>
-    <screen id="demo$Food.browse"
-            template="/com/company/demo/web/food/food-browse.xml"/>
-    <screen id="demo$Food.edit"
-            template="/com/company/demo/web/food/food-edit.xml"/>
     <screen id="demo$Order.browse"
             template="/com/company/demo/web/order/order-browse.xml"/>
     <screen id="demo$Order.edit"
             template="/com/company/demo/web/order/order-edit.xml"/>
+    <screen id="demo$MenuItem.browse"
+            template="/com/company/demo/web/item/menu-item-browse.xml"/>
+    <screen id="demo$MenuItem.edit"
+            template="/com/company/demo/web/item/menu-item-edit.xml"/>
 </screen-config>

@@ -14,19 +14,18 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://browseCaption"
-        class="com.company.demo.web.food.FoodBrowse"
+        class="com.company.demo.web.item.MenuItemBrowse"
         focusComponent="foodsTable"
         lookupComponent="foodsTable"
-        messagesPack="com.company.demo.web.food">
+        messagesPack="com.company.demo.web.item">
     <dsContext>
         <collectionDatasource id="foodsDs"
-                              class="com.company.demo.entity.Food"
+                              class="com.company.demo.entity.MenuItem"
                               view="_local">
             <query>
-                <![CDATA[select e from demo$Food e]]>
+                <![CDATA[select e from demo$MenuItem e]]>
             </query>
         </collectionDatasource>
     </dsContext>

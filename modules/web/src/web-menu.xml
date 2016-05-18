@@ -14,11 +14,10 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application"
           insertBefore="administration">
-        <item id="demo$Food.browse"/>
+        <item id="demo$MenuItem.browse"/>
         <item id="demo$Order.browse"/>
     </menu>
 </menu-config>

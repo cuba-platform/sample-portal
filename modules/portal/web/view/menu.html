@@ -29,8 +29,8 @@
                         </tr>
                         <tr ng-repeat="item in food">
                             <td>{{ item.name }}</td>
-                            <td>{{ item.weight }}</td>
-                            <td>{{ item.price }} USD</td>
+                            <td class="al-center">{{ item.weight }}</td>
+                            <td class="al-center">{{ item.price }} USD</td>
                             <td class="al-center item-order-button" ng-if="$root.authenticated">
                                 <button value="{{ item.id }}" ng-model="addToCartButton" ng-click='addToCart(item.id)'>
                                     Add to cart

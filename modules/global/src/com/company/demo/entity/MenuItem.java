@@ -24,9 +24,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @NamePattern("%s %s|name,price")
-@Table(name = "DEMO_FOOD")
-@Entity(name = "demo$Food")
-public class Food extends StandardEntity {
+@Table(name = "DEMO_MENU_ITEM")
+@Entity(name = "demo$MenuItem")
+public class MenuItem extends StandardEntity {
     private static final long serialVersionUID = 581089908970270007L;
 
     @Column(name = "NAME")

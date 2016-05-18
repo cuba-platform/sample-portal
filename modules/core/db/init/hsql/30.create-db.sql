@@ -4,11 +4,11 @@ values ('be155ab8-c2bf-848d-26bc-3e8d2c584671', '2016-04-26 12:29:19', 'admin', 
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
-values ('1a350352-ef17-154b-9288-b2b78c75c231', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:version', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+values ('1a350352-ef17-154b-9288-b2b78c75c231', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$MenuItem:version', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
-values ('ba07e01d-124e-effb-2aa3-1e92e7cb93b6', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:updatedBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+values ('ba07e01d-124e-effb-2aa3-1e92e7cb93b6', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$MenuItem:updatedBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
@@ -36,7 +36,7 @@ values ('35234f72-0003-66db-1eb8-96382500f0e5', '2016-04-26 12:29:19', 'admin', 
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
-values ('630d12fa-66d5-11fb-4e59-0fadee7e087f', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:createTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+values ('630d12fa-66d5-11fb-4e59-0fadee7e087f', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$MenuItem:createTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
@@ -44,11 +44,11 @@ values ('f4d1b514-7102-5eac-8431-5c6db0a90110', '2016-04-26 12:29:19', 'admin', 
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
-values ('daf1ba8f-1f91-9498-b31e-d82267271e3c', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:deleteTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+values ('daf1ba8f-1f91-9498-b31e-d82267271e3c', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$MenuItem:deleteTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
-values ('35275b3d-3906-28e8-a90c-0613f41fc845', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:updateTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+values ('35275b3d-3906-28e8-a90c-0613f41fc845', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$MenuItem:updateTs', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
@@ -56,15 +56,15 @@ values ('6754d16c-d37a-9c9b-a889-d2cd80dae0bd', '2016-04-26 12:29:19', 'admin', 
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
-values ('b182d849-3e25-b23c-58fa-80a520572f27', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:deletedBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+values ('b182d849-3e25-b23c-58fa-80a520572f27', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$MenuItem:deletedBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
-values ('41e259b2-2595-3909-6484-130247bddd69', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$Food:read', 1, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+values ('41e259b2-2595-3909-6484-130247bddd69', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 20, 'demo$MenuItem:read', 1, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
 
 insert into SEC_PERMISSION
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, PERMISSION_TYPE, TARGET, VALUE, ROLE_ID)
-values ('d9c74553-e3c9-8ec2-ca12-60579ee8c58d', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$Food:createdBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
+values ('d9c74553-e3c9-8ec2-ca12-60579ee8c58d', '2016-04-26 12:29:19', 'admin', 1, '2016-04-26 12:29:19', null, null, null, 30, 'demo$MenuItem:createdBy', 0, 'be155ab8-c2bf-848d-26bc-3e8d2c584671');
 
 insert into SEC_ROLE
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, LOC_NAME, DESCRIPTION, ROLE_TYPE, IS_DEFAULT_ROLE)
@@ -99,22 +99,22 @@ insert into SEC_USER_ROLE
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, USER_ID, ROLE_ID)
 values ('9b048c4f-f111-b77e-43e0-3e770beb2fbc', null, null, null, null, null, null, null, '1c1fb6a7-4629-1999-b891-2b869cbdc193', 'dc6037e5-6ecb-7a0a-a8d4-de869e56bdbc');
 
-insert into DEMO_FOOD
+insert into DEMO_MENU_ITEM
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
 values ('a28c65d4-a61b-7c64-8386-5f88d3c244a9', '2016-04-26 12:30:54', 'admin', 2, '2016-04-26 12:50:03', null, null, null, 'Double NPE', 200, 5);
 
-insert into DEMO_FOOD
+insert into DEMO_MENU_ITEM
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
 values ('f30bb5e6-29e4-4cf1-8d1a-db1a94ed2084', '2016-04-26 12:50:35', 'admin', 1, '2016-04-26 12:50:35', null, null, null, 'Long Java', 250, 3);
 
-insert into DEMO_FOOD
+insert into DEMO_MENU_ITEM
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
 values ('7eacff1e-0879-ca8b-6407-b0de766aba67', '2016-04-26 12:50:59', 'admin', 1, '2016-04-26 12:50:59', null, null, null, 'LeBoorondoque Fries', 350, 5);
 
-insert into DEMO_FOOD
+insert into DEMO_MENU_ITEM
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
 values ('46cf913b-a6b7-e25f-7aee-2cdfc5bc8412', '2016-04-26 12:51:26', 'admin', 1, '2016-04-26 12:51:26', null, null, null, 'Bug Bacon', 350, 4);
 
-insert into DEMO_FOOD
+insert into DEMO_MENU_ITEM
 (ID, CREATE_TS, CREATED_BY, VERSION, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, NAME, WEIGHT, PRICE)
 values ('4049628a-4cc7-b48d-10ed-fed4f4801121', '2016-04-26 12:51:40', 'admin', 1, '2016-04-26 12:51:40', null, null, null, 'Chicken Deploy', 250, 3);
