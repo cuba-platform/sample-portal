@@ -20,7 +20,7 @@
         $scope.getTotal = function () {
             $scope.cartTotal = 0;
             for (var i = 0; i < $scope.cartItems.length; ++i) {
-                $scope.cartTotal += parseInt($scope.cartItems[i].price);
+                $scope.cartTotal += parseInt($scope.cartItems[i].menuItem.price)*$scope.cartItems[i].quantity;
             }
         };
 
@@ -33,17 +33,38 @@
             $scope.cartItems = [];
             localStorage.setItem('cartItems', '');
         }
-        
+
         checkCart();
 
         $scope.addToCart = function (id) {
-            var selectedItem = findItems($scope.cartItems, $scope.food, id);
-            if (selectedItem != null) {
-                $scope.cartItems.push(selectedItem);
-                checkCart();
-                $scope.getTotal();
-                $scope.updateCartStorage();
+            var isNew = true;
+            for (var i = 0; i < $scope.food.length; ++i) {
+                if ($scope.food[i].id == id) {
+                    for (var j = 0; j < $scope.cartItems.length; ++j) {
+                        if ($scope.cartItems[j].menuItem.id == id) {
+                            $scope.cartItems[j].quantity = $scope.cartItems[j].quantity + 1;
+                            isNew = false;
+                        }
+                    }
+                    if (isNew) {
+                        $scope.cartItems.push({
+                            'quantity': 1,
+                            'menuItem': $scope.food[i]
+                        });
+                    }
+                }
             }
+            checkCart();
+            $scope.getTotal();
+            $scope.updateCartStorage();
+
+            // var selectedItem = findItems($scope.cartItems, $scope.food, id);
+            // if (selectedItem != null) {
+            //     $scope.cartItems.push(selectedItem);
+            //     checkCart();
+            //     $scope.getTotal();
+            //     $scope.updateCartStorage();
+            // }
         };
 
         $scope.updateCartStorage = function () {
@@ -51,15 +72,35 @@
         };
 
         $scope.placeOrder = function () {
+            var commitMenuItems = [];
+            var commitUuid = [];
+            var newUuid;
+            var orderUuid = generateUUID();
+
+            for (var i = 0; i < $scope.cartItems.length; ++i) {
+                newUuid = generateUUID();
+                commitMenuItems.push({
+                    'id': 'NEW-demo$OrderItem-'+newUuid,
+                    'menuItem': $scope.cartItems[i].menuItem,
+                    'quantity': $scope.cartItems[i].quantity,
+                    'order': {
+                        'id': 'demo$Order-'+orderUuid
+                    }
+                });
+                commitUuid.push({'id': 'demo$OrderItem-'+newUuid});
+            }
+
+            var commitInstances = [{
+                'id': 'NEW-demo$Order-'+orderUuid,
+                'orderItem': commitUuid
+            }];
+
             $http({
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 url: '/app-portal/api/commit',
                 data: {
-                    'commitInstances': [{
-                        'id': 'NEW-demo$Order',
-                        'food': $scope.cartItems
-                    }]
+                    'commitInstances': commitInstances.concat(commitMenuItems)
                 },
                 params: {'s': localStorage.getItem('session_id')}
             }).then(function (response) {
@@ -114,7 +155,6 @@
                 }
             }).then(function (response) {
                 $scope.orders = timeConverter(response.data);
-                $scope.calcTotals();
             }, function (response) {
                 if (response.status == 401) {
                     if (localStorage.getItem('username')) {
@@ -126,6 +166,19 @@
             });
         };
         $scope.getOrders();
+
+        $scope.getOrderPrice = function (id) {
+            var orderPrice = 0;
+            for (var i = 0; i < $scope.orders.length; ++i) {
+                if ($scope.orders[i].id == id) {
+                    for (var j = 0; j < $scope.orders[i].orderItem.length; ++j) {
+                        orderPrice += parseInt($scope.orders[i].orderItem[j].menuItem.price) * parseInt($scope.orders[i].orderItem[j].quantity);
+                    }
+                    return orderPrice;
+                }
+            }
+            return 0;
+        };
 
         $scope.cancelOrder = function (id) {
             $http({
@@ -157,16 +210,6 @@
                 }
             });
         };
-
-        $scope.calcTotals = function () {
-            for (var i = 0; i < $scope.orders.length; ++i) {
-                var totalItem = 0;
-                for (var j = 0; j < $scope.orders[i].food.length; ++j) {
-                    totalItem = totalItem + parseInt($scope.orders[i].food[j].price);
-                }
-                $scope.totals.push(totalItem);
-            }
-        }
     }
 
     angular
@@ -241,14 +284,12 @@ function timeConverter(items) {
     return items;
 }
 
-function findItems(currentCart, items, id) {
-    for (var i = 0; i < items.length; ++i) {
-        if (items[i].id == id) {
-            for (var j = 0; j < currentCart.length; ++j) {
-                if (currentCart[j].id == id)
-                    return;
-            }
-            return items[i];
-        }
-    }
-}
+function generateUUID() {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+};

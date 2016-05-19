@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 
-<div class="main-container" ng-controller="FoodListController">
+<div class="main-container">
     <h1>Burgers</h1>
     <table width="100%">
         <tr>
@@ -47,18 +47,21 @@
                         <table class="shop-list">
                             <tr>
                                 <td>Burger</td>
-                                <td>Price</td>
+                                <td>Count</td>
+                                <td class="price-col">Price</td>
                                 <td></td>
                             </tr>
                             <tr ng-repeat="item in cartItems">
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.price }} USD</td>
+                                <td>{{ item.menuItem.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.menuItem.price }} USD</td>
                                 <td>
                                     <div class="remove-item" ng-click='removeFromCart(item.id)'>X</div>
                                 </td>
                             </tr>
                             <tr ng-if="emptyCart==false" class="cart-total">
                                 <td>Total</td>
+                                <td></td>
                                 <td>{{ cartTotal }} USD</td>
                             </tr>
                         </table>

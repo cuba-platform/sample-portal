@@ -24,4 +24,8 @@
             template="/com/company/demo/web/item/menu-item-browse.xml"/>
     <screen id="demo$MenuItem.edit"
             template="/com/company/demo/web/item/menu-item-edit.xml"/>
+    <screen id="demo$OrderItem.browse"
+            template="com/company/demo/web/orderitem/orderitem-browse.xml"/>
+    <screen id="demo$OrderItem.edit"
+            template="com/company/demo/web/orderitem/orderitem-edit.xml"/>
 </screen-config>

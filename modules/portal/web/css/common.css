@@ -207,3 +207,7 @@ button:active {
 .padding-panel {
   width: 894px;
 }
+
+.price-col {
+  width: 45px !important;
+}

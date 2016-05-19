@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 
-<div class="main-container" ng-controller="OrdersController">
+<div class="main-container">
     <h1>Orders</h1>
     <div class="table-border">
         <table class="shop-list" border="1">
@@ -36,7 +36,7 @@
                     <span ng-switch-when="30">Finished</span>
                     <span ng-switch-when="40">Canceled</span>
                 </td>
-                <td class="al-center">{{ totals[$index] }} USD</td>
+                <td class="al-center">{{ getOrderPrice(item.id) }} USD</td>
                 <td class="al-center item-order-button">
                     <button ng-click="cancelOrder(item.id)" ng-if="item.status != 30 && item.status != 40" ng-model="addToCartButton" ng-click='addToCart(item.id)'>
                         Cancel order

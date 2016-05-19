@@ -20,5 +20,6 @@
                       transaction-type="RESOURCE_LOCAL">
         <class>com.company.demo.entity.MenuItem</class>
         <class>com.company.demo.entity.Order</class>
+        <class>com.company.demo.entity.OrderItem</class>
     </persistence-unit>
 </persistence>

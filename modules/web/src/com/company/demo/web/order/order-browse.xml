@@ -14,7 +14,6 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://browseCaption"
         class="com.company.demo.web.order.OrderBrowse"
@@ -38,11 +37,13 @@
             <properties include=".*"/>
         </filter>
         <table id="ordersTable"
+               multiselect="true"
                width="100%">
             <actions>
                 <action id="create"/>
                 <action id="edit"/>
                 <action id="remove"/>
+                <action id="refresh"/>
             </actions>
             <columns>
                 <column id="user"/>
@@ -58,6 +59,8 @@
                         action="ordersTable.edit"/>
                 <button id="removeBtn"
                         action="ordersTable.remove"/>
+                <button id="refreshBtn"
+                        action="ordersTable.refresh"/>
             </buttonsPanel>
         </table>
     </layout>

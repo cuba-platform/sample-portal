@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.demo.web.orderitem.OrderItemBrowse"
+        focusComponent="orderItemsTable"
+        lookupComponent="orderItemsTable"
+        messagesPack="com.company.demo.web.orderitem">
+    <dsContext>
+        <collectionDatasource id="orderItemsDs"
+                              class="com.company.demo.entity.OrderItem"
+                              view="orderItem-view">
+            <query>
+                <![CDATA[select e from demo$OrderItem e]]>
+            </query>
+            <datasource id="menuItemDs"
+                        property="menuItem"/>
+        </collectionDatasource>
+    </dsContext>
+    <layout expand="orderItemsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="orderItemsTable"
+                datasource="orderItemsDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="orderItemsTable"
+               width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="quantity"/>
+                <column id="menuItem"
+                        caption="msg://menuItem"/>
+            </columns>
+            <rows datasource="orderItemsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="orderItemsTable.create"/>
+                <button id="editBtn"
+                        action="orderItemsTable.edit"/>
+                <button id="removeBtn"
+                        action="orderItemsTable.remove"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

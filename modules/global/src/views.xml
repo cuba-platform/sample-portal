@@ -14,7 +14,6 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
     <view class="com.company.demo.entity.Order"
           extends="_local"
@@ -23,8 +22,17 @@
             <property name="name"/>
             <property name="login"/>
         </property>
-        <property name="food"
+        <property name="orderItem"
                   view="_local">
+            <property name="menuItem"
+                      view="_local"/>
+        </property>
+    </view>
+    <view class="com.company.demo.entity.OrderItem"
+          extends="_local"
+          name="orderItem-view">
+        <property name="menuItem"
+                  view="_minimal">
         </property>
     </view>
 </views>
