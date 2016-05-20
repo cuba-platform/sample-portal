@@ -12,7 +12,7 @@ import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
 
 @Listeners("demo_OrderListener")
-@NamePattern("%s %s %s|orderItem,user,createTs")
+@NamePattern("%s %s %s|orderItems,user,createTs")
 @Table(name = "DEMO_ORDER")
 @Entity(name = "demo$Order")
 public class Order extends StandardEntity {
@@ -22,21 +22,20 @@ public class Order extends StandardEntity {
     @JoinColumn(name = "USER_ID")
     protected User user;
 
-
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "order")
-    protected Set<OrderItem> orderItem;
+    protected Set<OrderItem> orderItems;
 
     @Column(name = "STATUS")
     protected Integer status;
 
-    public void setOrderItem(Set<OrderItem> orderItem) {
-        this.orderItem = orderItem;
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
-    public Set<OrderItem> getOrderItem() {
-        return orderItem;
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
     public void setStatus(Status status) {

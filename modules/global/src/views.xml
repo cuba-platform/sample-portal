@@ -22,7 +22,7 @@
             <property name="name"/>
             <property name="login"/>
         </property>
-        <property name="orderItem"
+        <property name="orderItems"
                   view="_local">
             <property name="menuItem"
                       view="_local"/>

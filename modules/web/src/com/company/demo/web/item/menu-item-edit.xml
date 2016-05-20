@@ -25,6 +25,8 @@
                     class="com.company.demo.entity.MenuItem"
                     view="_local"/>
     </dsContext>
+    <dialogMode forceDialog="true"
+                width="AUTO"/>
     <layout expand="windowActions"
             spacing="true">
         <fieldGroup id="fieldGroup"

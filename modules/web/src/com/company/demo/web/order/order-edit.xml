@@ -25,7 +25,7 @@
                     class="com.company.demo.entity.Order"
                     view="order-view">
             <collectionDatasource id="foodDs"
-                                  property="orderItem"/>
+                                  property="orderItems"/>
         </datasource>
     </dsContext>
     <layout expand="windowActions"
@@ -38,8 +38,8 @@
             </column>
         </fieldGroup>
         <groupBox id="foodBox"
-                  caption="msg://com.company.demo.entity/Order.orderItem">
-            <table id="orderItem"
+                  caption="msg://com.company.demo.entity/Order.orderItems">
+            <table id="orderItems"
                    height="200px"
                    width="100%">
                 <actions>
@@ -53,8 +53,8 @@
                 </columns>
                 <rows datasource="foodDs"/>
                 <buttonsPanel>
-                    <button action="orderItem.create"/>
-                    <button action="orderItem.remove"/>
+                    <button action="orderItems.create"/>
+                    <button action="orderItems.remove"/>
                 </buttonsPanel>
             </table>
         </groupBox>

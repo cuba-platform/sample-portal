@@ -28,7 +28,6 @@ public class OrderItem extends StandardEntity {
     @Column(name = "QUANTITY")
     protected Integer quantity;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     protected Order order;
@@ -41,7 +40,6 @@ public class OrderItem extends StandardEntity {
         return order;
     }
 
-
     public MenuItem getMenuItem() {
         return menuItem;
     }
@@ -50,9 +48,6 @@ public class OrderItem extends StandardEntity {
         this.menuItem = menuItem;
     }
 
-
-
-
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
@@ -60,6 +55,4 @@ public class OrderItem extends StandardEntity {
     public Integer getQuantity() {
         return quantity;
     }
-
-
 }

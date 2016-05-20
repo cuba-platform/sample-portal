@@ -25,7 +25,6 @@ public class MenuItem extends StandardEntity {
     @Column(name = "PRICE")
     protected Integer price;
 
-
     public void setName(String name) {
         this.name = name;
     }

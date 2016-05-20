@@ -57,14 +57,6 @@
             checkCart();
             $scope.getTotal();
             $scope.updateCartStorage();
-
-            // var selectedItem = findItems($scope.cartItems, $scope.food, id);
-            // if (selectedItem != null) {
-            //     $scope.cartItems.push(selectedItem);
-            //     checkCart();
-            //     $scope.getTotal();
-            //     $scope.updateCartStorage();
-            // }
         };
 
         $scope.updateCartStorage = function () {
@@ -92,7 +84,7 @@
 
             var commitInstances = [{
                 'id': 'NEW-demo$Order-'+orderUuid,
-                'orderItem': commitUuid
+                'orderItems': commitUuid
             }];
 
             $http({
@@ -171,8 +163,8 @@
             var orderPrice = 0;
             for (var i = 0; i < $scope.orders.length; ++i) {
                 if ($scope.orders[i].id == id) {
-                    for (var j = 0; j < $scope.orders[i].orderItem.length; ++j) {
-                        orderPrice += parseInt($scope.orders[i].orderItem[j].menuItem.price) * parseInt($scope.orders[i].orderItem[j].quantity);
+                    for (var j = 0; j < $scope.orders[i].orderItems.length; ++j) {
+                        orderPrice += parseInt($scope.orders[i].orderItems[j].menuItem.price) * parseInt($scope.orders[i].orderItems[j].quantity);
                     }
                     return orderPrice;
                 }
