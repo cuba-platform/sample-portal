@@ -22,30 +22,21 @@
            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-4.0.xsd">
-    
+
     <beans:bean name="portal_AuthProvider" class="com.haulmont.cuba.portal.security.PortalAuthenticationProvider"/>
-    
+
     <!-- Logout from middleware on logout -->
     <beans:bean id="cuba_PortalLogoutHandler" class="com.haulmont.cuba.portal.sys.security.PortalLogoutHandler">
         <beans:property name="targetUrlParameter" value="/login"/>
     </beans:bean>
-    
+
     <http pattern="/api/**" security="none"/>
-    
+
     <http auto-config="true">
-        <!-- resources -->
-        <intercept-url pattern="/resources/**" access="permitAll"/>
-
-        <!-- login & registration -->
-        <intercept-url pattern="/login" access="permitAll"/>
-
-        <intercept-url pattern="/menu" access="permitAll"/>
-
         <!-- index page -->
         <intercept-url pattern="/" access="permitAll"/>
-
-        <intercept-url pattern="/api/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
     </http>
+
     <authentication-manager alias="authenticationManager">
         <authentication-provider ref="portal_AuthProvider"/>
     </authentication-manager>
