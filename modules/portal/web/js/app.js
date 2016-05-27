@@ -44,17 +44,17 @@
 
         $rootScope.reauth = function (repeatFunction) {
             $http({
-                method: "POST",
-                url: "/app-portal/api/login",
+                method: 'POST',
+                url: '/app-portal/api/login',
                 data: {
-                    "username": localStorage.getItem('username'),
-                    "password": localStorage.getItem('password'),
-                    "locale": "en"
+                    'username': localStorage.getItem('username'),
+                    'password': localStorage.getItem('password'),
+                    'locale': 'en'
                 },
-                contentType: "application/x-www-form-urlencoded"
+                contentType: 'application/x-www-form-urlencoded'
             }).then(function (response) {
                 localStorage.setItem('session_id', response.data);
-                console.log("Session dead. Reauth");
+                console.log('Session dead. Reauth');
                 repeatFunction();
             }, function (response) {
                 localStorage.removeItem('session_id');
