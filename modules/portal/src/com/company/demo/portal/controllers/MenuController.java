@@ -7,7 +7,7 @@ import com.haulmont.cuba.core.global.LoadContext;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.View;
 import com.haulmont.cuba.restapi.ConversionFactory;
-import com.haulmont.cuba.restapi.Convertor;
+import com.haulmont.cuba.restapi.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -44,10 +44,10 @@ public class MenuController {
         List<MenuItem> entities = dataService.loadList(foodLoadContext);
         MetaClass metaClass = metadata.getClassNN(MenuItem.class);
 
-        Convertor convertor = conversionFactory.getConvertor("json");
+        Converter converter = conversionFactory.getConverter("json");
 
         try {
-            return convertor.process((List) entities, metaClass, foodLoadContext.getView());
+            return converter.process((List) entities, metaClass, foodLoadContext.getView());
         } catch (Exception e) {
             log.error("Error converting json", e);
             return "";
