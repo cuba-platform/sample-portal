@@ -8,6 +8,7 @@ import com.haulmont.cuba.core.listener.BeforeInsertEntityListener;
 import com.company.demo.entity.Order;
 
 import javax.inject.Inject;
+import com.haulmont.cuba.core.EntityManager;
 
 @Component("demo_OrderListener")
 public class OrderListener implements BeforeInsertEntityListener<Order> {
@@ -16,7 +17,7 @@ public class OrderListener implements BeforeInsertEntityListener<Order> {
     private UserSessionSource userSessionSource;
 
     @Override
-    public void onBeforeInsert(Order entity) {
+    public void onBeforeInsert(Order entity, EntityManager entityManager) {
         User currentUser = userSessionSource.getUserSession().getUser();
         if (entity.getUser() == null) {
             entity.setUser(currentUser);
