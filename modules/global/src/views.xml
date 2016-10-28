@@ -17,7 +17,8 @@
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
     <view class="com.company.demo.entity.Order"
           extends="_local"
-          name="order-view">
+          name="order-view"
+          systemProperties="true">
         <property name="user">
             <property name="name"/>
             <property name="login"/>
