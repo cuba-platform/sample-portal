@@ -48,6 +48,7 @@
                     }
                     if (isNew) {
                         $scope.cartItems.push({
+                            'id': id,
                             'quantity': 1,
                             'menuItem': $scope.food[i]
                         });
