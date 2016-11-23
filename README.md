@@ -1,6 +1,6 @@
 # Portal
 
-This is a showcase [CUBA](https://www.cuba-platform.com) application that contains a portal module with AngularJS client application.
+This is a showcase CUBA application that contains a portal module with AngularJS client application.
 
 * `MenuController` loads a list of items to display them for authenticated and anonimous users.
 * The `web` folder contains a single-page website based on AngularJS which communicates with the main application through [REST API](https://doc.cuba-platform.com/manual-6.1/rest_api.html).
