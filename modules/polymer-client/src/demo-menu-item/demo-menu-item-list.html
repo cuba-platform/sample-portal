@@ -1,0 +1,79 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/cuba-app/cuba-localize-behavior.html">
+<link rel="import" href="../../bower_components/cuba-styles/cuba-styles.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-menu-item-list">
+  <template>
+    <style include="cuba-styles"></style>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <cuba-entities id="data"
+                   entity-name="demo$MenuItem"
+                   data="{{entities}}"
+                   view="_local"
+                   loading="{{dataLoading}}"
+                   limit="10"
+                   provide-count="true"
+                   count="{{entitiesCount}}">
+    </cuba-entities>
+    <paper-toolbar id="toolbar" class="list-toolbar">
+      <span class="title">
+        <paper-spinner active="[[dataLoading]]"></paper-spinner>
+      </span>
+      <paper-icon-button icon="refresh"
+                         on-tap="_reload"></paper-icon-button>
+    </paper-toolbar>
+    <div class="item-list">
+      <template is="dom-repeat" items="{{entities}}">
+        <div class="row">
+          <div class="title">[[item._instanceName]]</div>
+          <div class="description">[[msg('demo$MenuItem.name')]]: [[item.name]] 
+
+[[msg('demo$MenuItem.weight')]]: [[item.weight]] 
+
+[[msg('demo$MenuItem.price')]]: [[item.price]] 
+
+
+          </div>
+        </div>
+      </template>
+    </div>
+    <template is="dom-if" if="[[moreDataAvailable]]">
+      <paper-button on-tap="_loadMore" class="load-more">
+        Load more
+      </paper-button>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'demo-menu-item-list',
+      behaviors: [CubaLocalizeBehavior],
+      properties: {
+        entities: {
+          type: Array
+        },
+        entitiesCount: {
+          type: Number
+        },
+        moreDataAvailable: {
+          type: Boolean,
+          computed: '_computeMoreDataAvailable(entities, entitiesCount, entities.*)'
+        }
+      },
+      _reload: function() {
+        this.$.data.load();
+      },
+      _loadMore: function() {
+        this.$.data.loadMore();
+      },
+      _computeMoreDataAvailable: function(entities, entitiesCount) {
+        return entities.length < entitiesCount;
+      }
+    });
+  </script>
+</dom-module>
