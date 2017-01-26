@@ -13,7 +13,10 @@ buildscript {
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
+
         classpath "com.haulmont.cuba:cuba-global:$cubaVersion"
+
+        
     }
 }
 
@@ -22,6 +25,7 @@ def coreModule = project(':app-core')
 def guiModule = project(':app-gui')
 def webModule = project(':app-web')
 def portalModule = project(':app-portal')
+def polymerClientModule = project(':app-polymer-client')
 
 def servletApi = 'org.apache.tomcat:tomcat-servlet-api:8.0.26'
 
@@ -38,7 +42,6 @@ cuba {
     tomcat {
         dir = "$project.rootDir/build/tomcat"
     }
-    
 }
 
 def hsql = 'org.hsqldb:hsqldb:2.2.9'
@@ -64,11 +67,8 @@ configure([globalModule, coreModule, guiModule, webModule, portalModule]) {
 }
 
 configure(globalModule) {
-    dependencies {
-
-    }
-
     task enhance(type: CubaEnhancing)
+    
     
 }
 
@@ -135,7 +135,6 @@ configure(guiModule) {
 configure(webModule) {
     configurations {
         webcontent
-        
     }
 
     dependencies {
@@ -144,8 +143,9 @@ configure(webModule) {
         testCompile('org.jmockit:jmockit:1.15')
 
     }
-
+    
     task webArchive(type: Zip) {
+        from file("$buildDir/web")
         from file('web')
         classifier = 'web'
     }
@@ -186,7 +186,7 @@ configure(portalModule) {
     dependencies {
         provided(servletApi)
         compile(globalModule)
-        testCompile('org.jmockit:jmockit:1.15')
+                testCompile('org.jmockit:jmockit:1.15')
 
     }
 
@@ -235,11 +235,42 @@ configure(portalModule) {
 }
 
 
+
+configure(polymerClientModule) {
+    apply(plugin: 'cuba')
+    apply(plugin: 'idea')
+
+    task installBowerPackages(type: NodeTask, dependsOn: npmInstall) {
+        script = file("node_modules/bower/bin/bower")
+        args = ['install','-F']
+        inputs.file "bower.json"
+        outputs.dir "bower_components"
+    }
+
+    task assemble(type: NodeTask, dependsOn: installBowerPackages) {
+        script = file("node_modules/gulp/bin/gulp.js")
+        args = ['build']
+        inputs.dir "./"
+        outputs.dir "build"
+    }
+
+    task servePolymer(type: NodeTask, dependsOn: assemble) {
+        script = file("node_modules/gulp/bin/gulp.js")
+        args = ['serve']
+    }
+
+    task deploy(type: Copy, dependsOn: assemble) {
+        from file('build/bundled')
+        into "$cuba.tomcat.dir/webapps/app-front"
+    }
+}
+
 task undeploy(type: Delete, dependsOn: ':app-web:cleanConf') {
     delete("$cuba.tomcat.dir/shared")
     delete("$cuba.tomcat.dir/webapps/app-core")
     delete("$cuba.tomcat.dir/webapps/app")
     delete("$cuba.tomcat.dir/webapps/app-portal")
+    delete("$cuba.tomcat.dir/webapps/app-front")
 }
 
 task restart(dependsOn: ['stop', ':app-core:deploy', ':app-web:deploy', ':app-portal:deploy'], description: 'Redeploys applications and restarts local Tomcat') << {
