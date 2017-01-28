@@ -46,7 +46,7 @@
         }
       }
     </style> 
-  <cuba-app api-url="http://localhost:8080/app/rest/" on-cuba-token-expired="_handleTokenExpired"> 
+  <cuba-app api-url="/app/rest/" on-cuba-token-expired="_handleTokenExpired">
   </cuba-app> 
   <app-location route="{{route}}" use-hash-as-path></app-location> 
   <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"> 
@@ -76,8 +76,8 @@
      </paper-toolbar> 
      <iron-pages selected="[[_computeSelectedPage(routeData.page)]]" attr-for-selected="data-route" class="content fit"> 
       <demo-cart cart="[[cart]]" total-price="[[cartTotalPrice]]" data-route="cart"></demo-cart> 
-      <demo-menu-item-list data-route=""></demo-menu-item-list>
-      <demo-order-list data-route="orders"></demo-order-list>
+      <demo-menu-item-list data-route=""></demo-menu-item-list> 
+      <demo-order-list data-route="orders"></demo-order-list> 
      </iron-pages> 
      <paper-toast id="addToCartNotification"> 
      </paper-toast> 

@@ -44,8 +44,8 @@ public class OrderServiceBean implements OrderService {
     public List<Order> getUserOrders() {
         User user = userSessionSource.getUserSession().getUser();
 
-        LoadContext<Order> lc = new LoadContext<>(Order.class);
-        lc.setQueryString("select o from demo$Order o where o.user.id = :uid")
+        LoadContext<Order> lc = new LoadContext<>(Order.class).setView("order-view");
+        lc.setQueryString("select o from demo$Order o where o.user.id = :uid order by o.createTs desc")
                 .setParameter("uid", user.getId());
 
         return dataManager.loadList(lc);

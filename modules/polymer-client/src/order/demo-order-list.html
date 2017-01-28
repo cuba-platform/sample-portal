@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/cuba-app/cuba-localize-behavior.html">
 <link rel="import" href="../../bower_components/cuba-styles/cuba-styles.html">
+<link rel="import" href="demo-order-card.html">
 <link rel="import" href="../shared-styles.html">
 
 <dom-module id="demo-order-list">
@@ -14,13 +15,18 @@
       .empty-message {
         text-align: center;
       }
+      demo-order-card {
+        display: block;
+        margin: 12px auto;
+        width: 100%;
+        max-width: 800px;
+      }
     </style>
     <cuba-service id="data"
-                service-name="demo_OrderService"
-                method="getUserOrders"
-
-                data="{{entities}}"
-                loading="{{dataLoading}}">
+                  service-name="demo_OrderService"
+                  method="getUserOrders"
+                  data="{{entities}}"
+                  loading="{{dataLoading}}">
     </cuba-service>
 
     <paper-toolbar id="toolbar" class="list-toolbar">
@@ -31,13 +37,9 @@
       <paper-icon-button icon="refresh"
                          on-tap="_reload"></paper-icon-button>
     </paper-toolbar>
-    <div class="item-list">
-      <template is="dom-repeat" items="{{entities}}">
-        <div class="row">
-          <div class="title">[[item.status]]</div>
-        </div>
-      </template>
-    </div>
+    <template is="dom-repeat" items="{{entities}}">
+      <demo-order-card order="[[item]]" on-cancel-order="_cancelOrder"></demo-order-card>
+    </template>
     <template is="dom-if" if="[[!entities.length]]">
       <div class="empty-message">
         Your orders history is empty.
@@ -55,6 +57,11 @@
       },
       _reload: function() {
         this.$.data.load();
+      },
+      _cancelOrder: function(event) {
+        cuba.getApp().invokeService('demo_OrderService', 'cancelOrder', {order: event.model.item}).then(function() {
+          this.$.data.load();
+        }.bind(this));
       }
     });
   </script>
