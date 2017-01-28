@@ -104,7 +104,7 @@
         </div>
         <div class="card-actions">
           <paper-button on-tap="_clearCart">[[msg('Remove all')]]</paper-button>
-          <paper-button>[[msg('Place order')]]</paper-button>
+          <paper-button on-tap="placeOrder">[[msg('Place order')]]</paper-button>
         </div>
       </paper-card>
     </template>
@@ -114,6 +114,15 @@
         [[msg('Your cart is empty')]]
       </div>
     </template>
+
+    <paper-dialog id="orderPlacedDialog">
+      <div>
+        [[msg('You order has been placed!')]]
+      </div>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>[[msg('OK')]]</paper-button>
+      </div>
+    </paper-dialog>
   </template>
   <script>
     Polymer({
@@ -122,6 +131,19 @@
       properties: {
         cart: Array,
         totalPrice: Number
+      },
+      placeOrder: function () {
+        var orderItems = this.cart.map(function(item) {
+          return {
+            menuItem: item.menuItem,
+            quantity: item.quantity,
+            _entityName: 'demo$OrderItem'
+          }
+        });
+        cuba.getApp().invokeService('demo_OrderService', 'placeOrder', {items: orderItems}).then(function() {
+          this.fire('clear-cart');
+          this.$.orderPlacedDialog.open();
+        }.bind(this));
       },
       _addToCart: function (event) {
         this.fire('add-to-cart', event.model.item.menuItem);
