@@ -7,7 +7,7 @@
     "polymer": "Polymer/polymer#^1.7.0",
     "app-route": "PolymerElements/app-route#^0.9.3",
     "paper-elements": "PolymerElements/paper-elements#^1.0.7",
-    "iron-lazy-pages": "TimvdLippe/iron-lazy-pages#^1.4.3",
+    "iron-pages": "PolymerElements/iron-pages#^1.0.8",
     "iron-icons": "PolymerElements/iron-icons#^1.1.3",
     "vaadin-combo-box": "vaadin/vaadin-combo-box#^1.1.5",
     "vaadin-date-picker": "vaadin/vaadin-date-picker#^1.1.4",

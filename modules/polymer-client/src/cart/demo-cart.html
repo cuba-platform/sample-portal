@@ -1,0 +1,115 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/cuba-app/cuba-localize-behavior.html">
+<link rel="import" href="../../bower_components/cuba-styles/cuba-styles.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-cart">
+  <template>
+    <style include="cuba-styles"></style>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-card {
+        display: block;
+        width:100%;
+        max-width: 800px;
+        margin: 24px auto;
+      }
+      .row {
+        display: flex;
+      }
+      .row:not(:nth-last-child(2)) {
+        margin-bottom: 12px;
+      }
+      .row .name {
+        flex-grow: 1;
+      }
+      .row .price {
+        width: 50px;
+      }
+      .row .quantity {
+        text-align: right;
+      }
+      .price, .quantity {
+        font-size: 16px;
+      }
+      .row paper-icon-button {
+        padding: 0;
+        width: 16px;
+        height: 16px;
+      }
+      .row .quantity {
+        width: 150px;
+      }
+      .total {
+        font-weight: 500;
+        margin-top: 24px;
+      }
+      .total .name {
+        text-align: right;
+        padding-right: 10px;
+      }
+      .total .price {
+        width: 200px;
+      }
+    </style>
+    <paper-card heading="Cart">
+      <div class="card-content">
+        <template is="dom-repeat" items="[[cart]]">
+          <div class="row">
+            <div class="name">
+              [[item.menuItem.name]]
+            </div>
+            <div class="price">
+              [[item.menuItem.price]] USD
+            </div>
+            <div class="quantity">
+              <paper-icon-button icon="remove" on-tap="_removeFromCart"></paper-icon-button>
+              [[item.quantity]]
+              <paper-icon-button icon="add" on-tap="_addToCart">></paper-icon-button>
+            </div>
+          </div>
+        </template>
+        <template is="dom-if" if="[[cart.length]]">
+          <div class="row total">
+            <div class="name">
+              [[msg('Total')]]:
+            </div>
+            <div class="price">
+              [[totalPrice]] USD
+            </div>
+          </div>
+        </template>
+        <template is="dom-if" if="[[!cart.length]]">
+          <div class="empty-message">
+            [[msg('Your cart is empty')]]
+          </div>
+        </template>
+      </div>
+      <template is="dom-if" if="[[cart.length]]">
+        <div class="card-actions">
+          <paper-button>[[msg('Remove all')]]</paper-button>
+          <paper-button>[[msg('Place order')]]</paper-button>
+        </div>
+      </template>
+    </paper-card>
+  </template>
+  <script>
+    Polymer({
+      is: 'demo-cart',
+      behaviors: [CubaLocalizeBehavior],
+      properties: {
+        cart: Array,
+        totalPrice: Number
+      },
+      _addToCart: function(event) {
+        this.fire('add-to-cart', event.model.item.menuItem);
+      },
+      _removeFromCart: function(event) {
+        this.fire('remove-from-cart', event.model.item.menuItem);
+      }
+    })
+  </script>
+</dom-module>

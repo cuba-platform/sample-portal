@@ -25,20 +25,26 @@
   <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"> 
   </app-route> 
   <paper-menu attr-for-selected="data-path" selected="[[_computeSelectedItem(routeData.page)]]" on-selected-changed="_onMenuSelection"> 
-   <paper-icon-item data-path=""> 
-    <iron-icon icon="home" item-icon></iron-icon> [[msg('Home')]] 
-   </paper-icon-item>  
-   <paper-icon-item data-path="demo-menu-item-list"> 
+   <paper-icon-item data-path="">
     <iron-icon icon="assignment" item-icon></iron-icon> [[msg('Burgers')]]
    </paper-icon-item>
-  </paper-menu> 
+   <paper-icon-item data-path="cart">
+    <iron-icon id="cartIcon" icon="shopping-cart" item-icon></iron-icon> [[msg('Cart')]]
+    <template is="dom-if" if="[[cartTotal]]">
+     <paper-badge label="[[cartTotal]]" for="cartIcon"></paper-badge>
+    </template>
+   </paper-icon-item>
+  </paper-menu>
  </template> 
  <script>
     Polymer({
       is: 'demo-menu',
       behaviors: [CubaLocalizeBehavior],
       properties: {
-        path: String
+        path: String,
+        cartTotal: {
+          type: String
+        }
       },
       navigate: function(path) {
         this.path = '/' + path;

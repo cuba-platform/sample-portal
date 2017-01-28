@@ -42,6 +42,9 @@
           <div class="price">
             [[item.price]] USD
           </div>
+          <div>
+            <paper-icon-button icon="add-circle-outline" on-tap="_addToCart"></paper-icon-button>
+          </div>
         </div>
       </template>
     </div>
@@ -75,6 +78,9 @@
       },
       _computeMoreDataAvailable: function (entities, entitiesCount) {
         return entities.length < entitiesCount;
+      },
+      _addToCart: function (event) {
+        this.fire('add-to-cart', event.model.item);
       }
     });
   </script>
