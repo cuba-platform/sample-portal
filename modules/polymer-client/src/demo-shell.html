@@ -88,6 +88,14 @@
             <demo-cart cart="[[cart]]" total-price="[[cartTotalPrice]]" data-route="cart"></demo-cart>
             <demo-menu-item-list data-route=""></demo-menu-item-list>
           </iron-pages>
+
+          <paper-toast id="addToCartNotification">
+          </paper-toast>
+
+          <paper-toast id="clearCartNotification">
+            [[msg('Shopping cart has been cleared')]]
+          </paper-toast>
+
         </paper-header-panel>
       </paper-drawer-panel>
     </template>
@@ -112,7 +120,8 @@
       ],
       listeners: {
         'add-to-cart': '_onAddToCart',
-        'remove-from-cart': '_onRemoveFromCart'
+        'remove-from-cart': '_onRemoveFromCart',
+        'clear-cart': '_onClearCart'
       },
       _init: function (app) {
         if (this.app.restApiToken) {
@@ -145,9 +154,14 @@
       },
       _onAddToCart: function (event) {
         this.$$('#cartData').addItem(event.detail);
+        this.$$('#addToCartNotification').show({text: event.detail.name + ' added to cart'});
       },
       _onRemoveFromCart: function (event) {
         this.$$('#cartData').removeItem(event.detail);
+      },
+      _onClearCart: function () {
+        this.$$('#cartData').clear();
+        this.$$('#clearCartNotification').show();
       }
     });
   </script>

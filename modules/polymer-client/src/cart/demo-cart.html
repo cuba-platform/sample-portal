@@ -90,7 +90,7 @@
       </div>
       <template is="dom-if" if="[[cart.length]]">
         <div class="card-actions">
-          <paper-button>[[msg('Remove all')]]</paper-button>
+          <paper-button on-tap="_clearCart">[[msg('Remove all')]]</paper-button>
           <paper-button>[[msg('Place order')]]</paper-button>
         </div>
       </template>
@@ -109,6 +109,9 @@
       },
       _removeFromCart: function(event) {
         this.fire('remove-from-cart', event.model.item.menuItem);
+      },
+      _clearCart: function(event) {
+        this.fire('clear-cart');
       }
     })
   </script>

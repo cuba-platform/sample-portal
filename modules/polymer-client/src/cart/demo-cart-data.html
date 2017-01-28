@@ -57,6 +57,10 @@
         }
       },
 
+      clear: function () {
+        this.cart = [];
+      },
+
       _computeTotalQuantity: function() {
         return this.cart.reduce(function(total, cartItem) {
           return total + cartItem.quantity;
