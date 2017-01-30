@@ -1,0 +1,156 @@
+<link rel="import" href="../bower_components/polymer/polymer.html"> 
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html"> 
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html"> 
+<link rel="import" href="../bower_components/paper-elements/paper-elements.html"> 
+<link rel="import" href="../bower_components/cuba-app/cuba-app.html"> 
+<link rel="import" href="../bower_components/cuba-app/cuba-app-aware-behavior.html"> 
+<link rel="import" href="../bower_components/cuba-app/cuba-localize-behavior.html"> 
+<link rel="import" href="../bower_components/cuba-styles/cuba-styles.html"> 
+<link rel="import" href="../bower_components/cuba-data/cuba-data.html"> 
+<link rel="import" href="../bower_components/cuba-form/cuba-form.html"> 
+<link rel="import" href="../bower_components/cuba-login/cuba-login.html"> 
+<link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html"> 
+<link rel="import" href="../bower_components/vaadin-date-picker/vaadin-date-picker.html"> 
+<link rel="import" href="shared-styles.html"> 
+<link rel="import" href="demo-menu.html"> 
+<link rel="import" href="demo-user-menu.html"> 
+<link rel="import" href="demo-login.html"> 
+<link rel="import" href="cart/demo-cart.html"> 
+<link rel="import" href="cart/demo-cart-data.html"> 
+<link rel="import" href="demo-menu-item/demo-menu-item-list.html"> 
+<link rel="import" href="order/demo-order-list.html">
+<dom-module id="demo-shell"> 
+ <template> 
+  <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+      iron-lazy-pages > :not(.full) {
+        max-width: 1080px;
+        margin: 12px auto;
+        padding: 12px 24px;
+      }
+
+      @media (max-width: 1366px) {
+        iron-lazy-pages > :not(.full) {
+          margin-top: 6px;
+          padding: 6px 12px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        iron-lazy-pages > :not(.full) {
+          margin-top: 0;
+          padding: 0;
+        }
+      }
+    </style> 
+  <cuba-app api-url="/app/rest/" on-cuba-token-expired="_handleTokenExpired">
+  </cuba-app> 
+  <app-location route="{{route}}" use-hash-as-path></app-location> 
+  <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"> 
+  </app-route> 
+  <template is="dom-if" if="[[!authenticated]]"> 
+   <demo-login on-cuba-login-success="_handleLogin"> 
+   </demo-login> 
+  </template> 
+  <template is="dom-if" if="[[authenticated]]" restamp="true"> 
+   <demo-cart-data id="cartData" cart="{{cart}}" total-price="{{cartTotalPrice}}" total-quantity="{{cartTotalQuantity}}"></demo-cart-data> 
+   <paper-drawer-panel id="drawerPanel"> 
+    <paper-header-panel drawer> 
+     <paper-toolbar> 
+      <div class="title">
+        [[msg('CUBINA BURGER')]] 
+      </div> 
+     </paper-toolbar> 
+     <div class="content fit drawer-content"> 
+      <demo-menu on-menu-navigate="_closeDrawer" cart-total="[[cartTotalQuantity]]"></demo-menu> 
+     </div> 
+    </paper-header-panel> 
+    <paper-header-panel main> 
+     <paper-toolbar class="main-toolbar"> 
+      <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button> 
+      <div class="flex"></div> 
+      <demo-user-menu></demo-user-menu> 
+     </paper-toolbar> 
+     <iron-pages selected="[[_computeSelectedPage(routeData.page)]]" attr-for-selected="data-route" class="content fit"> 
+      <demo-cart cart="[[cart]]" total-price="[[cartTotalPrice]]" data-route="cart"></demo-cart> 
+      <demo-menu-item-list data-route=""></demo-menu-item-list> 
+      <demo-order-list data-route="orders"></demo-order-list> 
+     </iron-pages> 
+     <paper-toast id="addToCartNotification"> 
+     </paper-toast> 
+     <paper-toast id="clearCartNotification">
+       [[msg('Shopping cart has been cleared')]] 
+     </paper-toast> 
+    </paper-header-panel> 
+   </paper-drawer-panel> 
+  </template> 
+ </template> 
+ <script>
+    Polymer({
+      is: 'demo-shell',
+      behaviors: [CubaAppAwareBehavior, CubaLocalizeBehavior],
+      properties: {
+        route: Object,
+        routeData: Object,
+        authenticated: {
+          type: Boolean
+        },
+        notAuthenticated: {// need to prevent flickering
+          type: Boolean,
+          computed: '_computeNotAuthenticated(authenticated)'
+        }
+      },
+      observers: [
+        '_init(app)'
+      ],
+      listeners: {
+        'add-to-cart': '_onAddToCart',
+        'remove-from-cart': '_onRemoveFromCart',
+        'clear-cart': '_onClearCart'
+      },
+      _init: function (app) {
+        if (this.app.restApiToken) {
+          this.app.loadEnums().then(function () {
+            this.authenticated = true;
+          }.bind(this));
+          this.app.loadEntitiesMessages();
+        } else {
+          this.authenticated = false;
+        }
+      },
+      _handleLogin: function () {
+        this.authenticated = true;
+        this.app.loadEnums();
+        this.app.loadEntitiesMessages();
+      },
+      _handleTokenExpired: function () {
+        this.authenticated = false;
+      },
+      _closeDrawer: function () {
+        this.async(function () {
+          this.$$('#drawerPanel').closeDrawer();
+        }.bind(this));
+      },
+      _computeSelectedPage: function (page) {
+        return page || '';
+      },
+      _computeNotAuthenticated: function (authenticated) {
+        return !authenticated;
+      },
+      _onAddToCart: function (event) {
+        this.$$('#cartData').addItem(event.detail);
+        this.$$('#addToCartNotification').show({text: event.detail.name + ' added to cart'});
+      },
+      _onRemoveFromCart: function (event) {
+        this.$$('#cartData').removeItem(event.detail);
+      },
+      _onClearCart: function () {
+        this.$$('#cartData').clear();
+        this.$$('#clearCartNotification').show();
+      }
+    });
+  </script> 
+</dom-module>

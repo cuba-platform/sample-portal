@@ -1,0 +1,87 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-cart-data">
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer({
+      is: 'demo-cart-data',
+      properties: {
+        cart: {
+          type: Array,
+          value: function () {
+            return [];
+          },
+          notify: true
+        },
+        totalQuantity: {
+          type: Number,
+          notify: true,
+          computed: '_computeTotalQuantity(cart.*)'
+        },
+        totalPrice: {
+          type: Number,
+          notify: true,
+          computed: '_computeTotalPrice(cart.*)'
+        }
+      },
+
+      addItem: function(menuItem) {
+        var cartItemIndex = this._findCartItemIndex(menuItem);
+        if (cartItemIndex >= 0) {
+          this.cart[cartItemIndex].quantity++;
+          this.notifyPath('cart.'+cartItemIndex+'.quantity');
+        } else {
+          this.push('cart', {menuItem: menuItem, quantity: 1});
+        }
+      },
+
+      removeItem: function (menuItem) {
+        var cartItemIndex = this._findCartItemIndex(menuItem);
+        if (cartItemIndex < 0)
+          return;
+
+        if (this.cart[cartItemIndex].quantity > 1) {
+          this.cart[cartItemIndex].quantity--;
+          this.notifyPath('cart.'+cartItemIndex+'.quantity');
+        } else {
+          this.splice('cart', cartItemIndex, 1);
+        }
+      },
+
+      clear: function () {
+        this.cart = [];
+      },
+
+      _computeTotalQuantity: function() {
+        return this.cart.reduce(function(total, cartItem) {
+          return total + cartItem.quantity;
+        }, 0);
+      },
+
+      _computeTotalPrice: function() {
+        return this.cart.reduce(function(totalPrice, cartItem) {
+          return totalPrice + ( cartItem.quantity * cartItem.menuItem.price);
+        }, 0);
+      },
+
+      _findCartItemIndex: function(menuItem) {
+        for (var i = 0; i < this.cart.length; i++) {
+          if (this.cart[i].menuItem.id === menuItem.id) {
+            return i;
+          }
+        }
+        return -1;
+      }
+
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,58 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-order-card">
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-card {
+        display: block;
+        --paper-card-header-text: {
+          font-size: 16px;
+        };
+      }
+      .card-content {
+        display: flex;
+      }
+      .order-info {
+        margin-top: 10px;
+        flex-grow: 1;
+      }
+    </style>
+
+    <paper-card heading="[[_computeHeading(order)]]">
+      <div class="card-content">
+        <div class="order-info">
+          Created at: [[order.createTs]]
+        </div>
+        <template is="dom-if" if="_cancellable(order)">
+          <paper-button class="cancel-btn" on-tap="_cancel">Cancel order</paper-button>
+        </template>
+      </div>
+    </paper-card>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'demo-order-card',
+      properties: {
+        order: Object
+      },
+      _computeHeading: function(order) {
+        return order.status + ' ' + order.orderItems.reduce(function(total, cartItem) {
+          return total + cartItem.quantity;
+        }, 0) + ' burgers';
+      },
+      _cancellable: function(order) {
+        return order.status === 'COOKING';
+      },
+      _cancel: function() {
+        this.fire('cancel-order', this.order);
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,87 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/cuba-app/cuba-localize-behavior.html">
+<link rel="import" href="../../bower_components/cuba-styles/cuba-styles.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-menu-item-list">
+  <template>
+    <style include="cuba-styles"></style>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+      .price {
+        width: 100px;
+        padding: 12px;
+      }
+    </style>
+    <cuba-entities id="data"
+                   entity-name="demo$MenuItem"
+                   data="{{entities}}"
+                   view="_local"
+                   loading="{{dataLoading}}"
+                   limit="10"
+                   provide-count="true"
+                   count="{{entitiesCount}}">
+    </cuba-entities>
+    <paper-toolbar id="toolbar" class="list-toolbar">
+      <span class="title">
+        <paper-spinner active="[[dataLoading]]"></paper-spinner>
+      </span>
+      <paper-icon-button icon="refresh"
+                         on-tap="_reload"></paper-icon-button>
+    </paper-toolbar>
+    <div class="item-list">
+      <template is="dom-repeat" items="{{entities}}">
+        <div class="row">
+          <div class="title">[[item.name]]</div>
+          <div class="description">
+            [[msg('demo$MenuItem.weight')]]: [[item.weight]]
+          </div>
+          <div class="price">
+            [[item.price]] USD
+          </div>
+          <div>
+            <paper-icon-button icon="add-circle-outline" on-tap="_addToCart"></paper-icon-button>
+          </div>
+        </div>
+      </template>
+    </div>
+    <template is="dom-if" if="[[moreDataAvailable]]">
+      <paper-button on-tap="_loadMore" class="load-more">
+        Load more
+      </paper-button>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'demo-menu-item-list',
+      behaviors: [CubaLocalizeBehavior],
+      properties: {
+        entities: {
+          type: Array
+        },
+        entitiesCount: {
+          type: Number
+        },
+        moreDataAvailable: {
+          type: Boolean,
+          computed: '_computeMoreDataAvailable(entities, entitiesCount, entities.*)'
+        }
+      },
+      _reload: function () {
+        this.$.data.load();
+      },
+      _loadMore: function () {
+        this.$.data.loadMore();
+      },
+      _computeMoreDataAvailable: function (entities, entitiesCount) {
+        return entities.length < entitiesCount;
+      },
+      _addToCart: function (event) {
+        this.fire('add-to-cart', event.model.item);
+      }
+    });
+  </script>
+</dom-module>

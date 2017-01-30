@@ -33,4 +33,14 @@
     <bean class="com.company.demo.web.App"
           name="cuba_App"
           scope="prototype"/>
+    <bean class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="clusterInvocationSupport"
+                  ref="cuba_clusterInvocationSupport"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="demo_OrderService"
+                       value="com.company.demo.service.OrderService"/>
+            </map>
+        </property>
+    </bean>
 </beans>

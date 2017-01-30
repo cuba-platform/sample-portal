@@ -1,0 +1,159 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/cuba-app/cuba-localize-behavior.html">
+<link rel="import" href="../../bower_components/cuba-styles/cuba-styles.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-cart">
+  <template>
+    <style include="cuba-styles"></style>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-card {
+        display: block;
+        width: 100%;
+        max-width: 800px;
+        margin: 24px auto;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .row:not(:nth-last-child(2)) {
+        margin-bottom: 12px;
+      }
+
+      .row .name {
+        flex-grow: 1;
+      }
+
+      .row .price {
+        width: 50px;
+      }
+
+      .row .quantity {
+        text-align: right;
+      }
+
+      .price, .quantity {
+        font-size: 16px;
+      }
+
+      .row paper-icon-button {
+        padding: 0;
+        width: 16px;
+        height: 16px;
+      }
+
+      .row .quantity {
+        width: 150px;
+      }
+
+      .total {
+        font-weight: 500;
+        margin-top: 24px;
+      }
+
+      .total .name {
+        text-align: right;
+        padding-right: 10px;
+      }
+
+      .total .price {
+        width: 200px;
+      }
+
+      .empty-message {
+        text-align: center;
+        margin-top: 64px;
+      }
+    </style>
+    <template is="dom-if" if="[[cart.length]]">
+      <paper-card heading="Cart">
+        <div class="card-content">
+          <template is="dom-repeat" items="[[cart]]">
+            <div class="row">
+              <div class="name">
+                [[item.menuItem.name]]
+              </div>
+              <div class="price">
+                [[item.menuItem.price]] USD
+              </div>
+              <div class="quantity">
+                <paper-icon-button icon="remove" on-tap="_removeFromCart"></paper-icon-button>
+                [[item.quantity]]
+                <paper-icon-button icon="add" on-tap="_addToCart">></paper-icon-button>
+              </div>
+            </div>
+          </template>
+          <template is="dom-if" if="[[cart.length]]">
+            <div class="row total">
+              <div class="name">
+                [[msg('Total')]]:
+              </div>
+              <div class="price">
+                [[totalPrice]] USD
+              </div>
+            </div>
+          </template>
+
+        </div>
+        <div class="card-actions">
+          <paper-button on-tap="_clearCart">[[msg('Remove all')]]</paper-button>
+          <paper-button on-tap="placeOrder">[[msg('Place order')]]</paper-button>
+        </div>
+      </paper-card>
+    </template>
+
+    <template is="dom-if" if="[[!cart.length]]">
+      <div class="empty-message">
+        [[msg('Your cart is empty')]]
+      </div>
+    </template>
+
+    <paper-dialog id="orderPlacedDialog">
+      <div>
+        [[msg('You order has been placed!')]]
+      </div>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>[[msg('OK')]]</paper-button>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+    Polymer({
+      is: 'demo-cart',
+      behaviors: [CubaLocalizeBehavior],
+      properties: {
+        cart: Array,
+        totalPrice: Number
+      },
+      placeOrder: function () {
+        var orderItems = this.cart.map(function(item) {
+          return {
+            menuItem: item.menuItem,
+            quantity: item.quantity,
+            _entityName: 'demo$OrderItem'
+          }
+        });
+        cuba.getApp().invokeService('demo_OrderService', 'placeOrder', {items: orderItems}).then(function() {
+          this.fire('clear-cart');
+          this.$.orderPlacedDialog.open();
+        }.bind(this));
+      },
+      _addToCart: function (event) {
+        this.fire('add-to-cart', event.model.item.menuItem);
+      },
+      _removeFromCart: function (event) {
+        this.fire('remove-from-cart', event.model.item.menuItem);
+      },
+      _clearCart: function (event) {
+        this.fire('clear-cart');
+      }
+    })
+  </script>
+</dom-module>
