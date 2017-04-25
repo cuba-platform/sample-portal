@@ -30,4 +30,4 @@ Creating a new position:
 * Open Orders browser to add a new food item
 * Refresh `http://localhost:8080/app-portal` to see it
 
-Based on CUBA Platform 6.4.2
+Based on CUBA Platform 6.5.0
