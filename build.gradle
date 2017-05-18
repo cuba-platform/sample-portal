@@ -90,11 +90,13 @@ configure(coreModule) {
 
     }
 
-    task cleanConf(description: 'Cleans up conf directory') << {
-        def dir = new File(cuba.tomcat.dir, '/conf/app-core')
-        if (dir.isDirectory()) {
-            ant.delete(includeemptydirs: true) {
-                fileset(dir: dir, includes: '**/*', excludes: 'local.app.properties')
+    task cleanConf(description: 'Cleans up conf directory')  {
+        doLast {
+            def dir = new File(cuba.tomcat.dir, '/conf/app-core')
+            if (dir.isDirectory()) {
+                ant.delete(includeemptydirs: true) {
+                    fileset(dir: dir, includes: '**/*', excludes: 'local.app.properties')
+                }
             }
         }
     }
@@ -168,11 +170,13 @@ configure(webModule) {
     }
     deployConf.dependsOn clearMessagesCache
 
-    task cleanConf(description: 'Cleans up conf directory') << {
-        def dir = new File(cuba.tomcat.dir, '/conf/app')
-        if (dir.isDirectory()) {
-            ant.delete(includeemptydirs: true) {
-                fileset(dir: dir, includes: '**/*', excludes: 'local.app.properties')
+    task cleanConf(description: 'Cleans up conf directory') {
+        doLast {
+            def dir = new File(cuba.tomcat.dir, '/conf/app')
+            if (dir.isDirectory()) {
+                ant.delete(includeemptydirs: true) {
+                    fileset(dir: dir, includes: '**/*', excludes: 'local.app.properties')
+                }
             }
         }
     }
@@ -202,27 +206,31 @@ configure(portalModule) {
         appJars('app-global', 'app-portal')
     }
 
-    task deployStatic() << {
-        copy {
-            from file('web/resources')
-            include '**/*.css'
-            include '**/*.js'
-            include '**/*.png'
-            include '**/*.gif'
-            include '**/*.jpg'
-            into resourcesDir
-        }
-        copy {
-            from file('web/WEB-INF/templates')
-            include '**/*.ftl'
-            include '**/*.html'
-            into ftlDir
+    task deployStatic() {
+        doLast {
+            copy {
+                from file('web/resources')
+                include '**/*.css'
+                include '**/*.js'
+                include '**/*.png'
+                include '**/*.gif'
+                include '**/*.jpg'
+                into resourcesDir
+            }
+            copy {
+                from file('web/WEB-INF/templates')
+                include '**/*.ftl'
+                include '**/*.html'
+                into ftlDir
+            }
         }
     }
 
-    task cleanStatic() << {
-        delete resourcesDir
-        delete ftlDir
+    task cleanStatic() {
+        doLast {
+            delete resourcesDir
+            delete ftlDir
+        }
     }
 
     task webArchive(type: Zip) {
@@ -276,13 +284,15 @@ task undeploy(type: Delete, dependsOn: ':app-web:cleanConf') {
     delete("$cuba.tomcat.dir/webapps/app-front")
 }
 
-task restart(dependsOn: ['stop', ':app-core:deploy', ':app-web:deploy', ':app-portal:deploy'], description: 'Redeploys applications and restarts local Tomcat') << {
-    ant.waitfor(maxwait: 6, maxwaitunit: 'second', checkevery: 2, checkeveryunit: 'second') {
-        not {
-            socket(server: 'localhost', port: '8787')
+task restart(dependsOn: ['stop', ':app-core:deploy', ':app-web:deploy', ':app-portal:deploy'], description: 'Redeploys applications and restarts local Tomcat') {
+    doLast {
+        ant.waitfor(maxwait: 6, maxwaitunit: 'second', checkevery: 2, checkeveryunit: 'second') {
+            not {
+                socket(server: 'localhost', port: '8787')
+            }
         }
+        start.execute()
     }
-    start.execute()
 }
 
 task wrapper(type: Wrapper) {
