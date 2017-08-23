@@ -38,7 +38,7 @@ cuba {
         isSnapshot = true
     }
     tomcat {
-        dir = "$project.rootDir/build/tomcat"
+        dir = "$project.rootDir/deploy/tomcat"
     }
 }
 
