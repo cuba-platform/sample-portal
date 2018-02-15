@@ -32,7 +32,7 @@
     <!--</task:scheduled-tasks>-->
     <bean class="com.company.demo.web.App"
           name="cuba_App"
-          scope="prototype"/>
+          scope="vaadin"/>
     <bean class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
         <property name="serverSelector"
                   ref="cuba_ServerSelector"/>
