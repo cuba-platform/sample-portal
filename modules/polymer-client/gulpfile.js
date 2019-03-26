@@ -5,7 +5,6 @@ const del = require('del');
 const polymerBuild = require('polymer-build');
 const mergeStream = require('merge-stream');
 const path = require('path');
-const polyserve = require('polyserve');
 
 const project = new polymerBuild.PolymerProject(require('./polymer.json'));
 
@@ -28,8 +27,4 @@ gulp.task('build-sw', ['build'], function(callback) {
     bundled: true,
     swPrecacheConfig: swPrecacheConfig
   });
-});
-
-gulp.task('serve', function() {
-  polyserve.startServer();
 });

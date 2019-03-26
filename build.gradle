@@ -267,11 +267,6 @@ configure(polymerClientModule) {
         outputs.dir "build"
     }
 
-    task servePolymer(type: NodeTask, dependsOn: assemble) {
-        script = file("node_modules/gulp/bin/gulp.js")
-        args = ['serve']
-    }
-
     task deploy(type: Copy, dependsOn: assemble) {
         from file('build/bundled')
         into "$cuba.tomcat.dir/webapps/app-front"
